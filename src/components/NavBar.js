@@ -4,22 +4,24 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import LoginModal from "./LoginModal";
+import JoinModal from "./JoinModal";
 import "../styles/Button.css"
 import "../styles/Logo.css"
+
 
 const NavBar = () => {
 
   // login and join modal states  
   const [showLoginModal, setShowLoginModal] = useState(false);
-/*   const [showJoinModal, setShowJoinModal] = useState(false); */
+  const [showJoinModal, setShowJoinModal] = useState(false);
 
   // setting Login modal state
   const handleShowLoginModal = () => setShowLoginModal(true);
   const handleCloseLoginModal = () => setShowLoginModal(false);
  
   // setting Join modal state
- /*  const handleCloseJoinModal = () => setShowJoinModal(false);
-  const handleShowJoinModal = () => setShowJoinModal(true); */
+  const handleCloseJoinModal = () => setShowJoinModal(false);
+  const handleShowJoinModal = () => setShowJoinModal(true);
 
 
   return (
@@ -46,7 +48,7 @@ const NavBar = () => {
               <Nav.Link onClick={handleShowLoginModal}>
                 <Button className="btn-custom">Login</Button>
               </Nav.Link>
-              <Nav.Link href="">
+              <Nav.Link onClick={handleShowJoinModal}>
                 <Button className="btn-custom">Join</Button>
               </Nav.Link>
             </Nav>
@@ -54,6 +56,7 @@ const NavBar = () => {
         </Container>
       </Navbar>
       <LoginModal show={showLoginModal} handleClose={handleCloseLoginModal} />
+      <JoinModal show={showJoinModal} handleClose={handleCloseJoinModal} />
     </div>
   );
 };
