@@ -1,0 +1,36 @@
+.btn-custom {
+  background: #19B4B4; 
+  border: 2px solid #19B4B4;
+  width: 130px;
+  height: 46px;
+  flex-shrink: 0;
+  color:#fff;
+  font-family: Open Sans;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal; 
+}
+
+.btn-custom:hover {
+  background: #159595;
+  border-color: #159595;
+  cursor: pointer;
+}
+
+@media (max-width: 834px) {
+  .btn-custom {
+    width: 112px;
+    height: 44px;
+    flex-shrink: 0; 
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .btn-custom {
+    width: 80px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
