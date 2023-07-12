@@ -3,11 +3,13 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useJoin } from "../utils/useJoin";
 import "../styles/Button.css";
 import "../styles/Logo.css";
 import "../styles/PageHeader.css";
 import "../styles/FormInput.css";
 import "../styles/Modal.css";
+
 
 const JoinModal = ({ show, handleClose }) => {
   const [username, setUsername] = useState("");
@@ -15,9 +17,11 @@ const JoinModal = ({ show, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { join, error, loading } = useJoin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await join(username, firstName, email, password)
   };
 
   return (
@@ -81,10 +85,10 @@ const JoinModal = ({ show, handleClose }) => {
                 },
               }}
             >
-              <Button type="submit" className="btn-custom m-5" >
+              <Button type="submit" className="btn-custom m-5" disabled={loading}>
                 Join
               </Button>
-              
+              {error && <div className="error-message">{error}</div>}
             </motion.div>
           </Form>
         </Modal.Body>
