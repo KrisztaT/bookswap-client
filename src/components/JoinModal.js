@@ -15,9 +15,9 @@ const JoinModal = ({ show, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, firstName, email, password);
   };
 
   return (
@@ -81,9 +81,10 @@ const JoinModal = ({ show, handleClose }) => {
                 },
               }}
             >
-              <Button type="submit" className="btn-custom m-5">
+              <Button type="submit" className="btn-custom m-5" >
                 Join
               </Button>
+              
             </motion.div>
           </Form>
         </Modal.Body>
