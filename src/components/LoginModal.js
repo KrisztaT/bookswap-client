@@ -3,19 +3,23 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useLogin } from "../utils/useLogin";
 import "../styles/Button.css";
 import "../styles/Logo.css";
 import "../styles/PageHeader.css";
 import "../styles/FormInput.css";
 import "../styles/Modal.css";
+import "../styles/Error.css";
 
 const LoginModal = ({ show, handleClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const { login, error, loading } = useLogin();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, password);
+    await login(username, password);
   };
 
   return (
@@ -30,7 +34,7 @@ const LoginModal = ({ show, handleClose }) => {
         <Modal.Body className="d-flex flex-column align-items-center justify-content-center modal-body">
           <p className="page-header">Log in to BookSwap</p>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mt-4" controlId="exampleForm.ControlInput1">
+            <Form.Group className="" controlId="exampleForm.ControlInput1">
               <Form.Control
                 type="text"
                 placeholder="Username"
@@ -40,7 +44,7 @@ const LoginModal = ({ show, handleClose }) => {
                 input={username}
               />
             </Form.Group>
-            <Form.Group className="mt-4" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Control
                 type="text"
                 placeholder="Password"
@@ -61,9 +65,14 @@ const LoginModal = ({ show, handleClose }) => {
                 },
               }}
             >
-              <Button type="submit" className="btn-custom m-5">
+              <Button
+                type="submit"
+                className="btn-custom m-3"
+                disabled={loading}
+              >
                 Login
               </Button>
+              {error && <div className="error-message">{error}</div>}
             </motion.div>
           </Form>
         </Modal.Body>
