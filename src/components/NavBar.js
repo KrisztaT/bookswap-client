@@ -49,7 +49,7 @@ const NavBar = () => {
         expand="md"
       >
         <Container className="container-border">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand as={Link} to="/">
             <img className="mx-4 logo" src="./bookswap_logo.svg" alt="logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
