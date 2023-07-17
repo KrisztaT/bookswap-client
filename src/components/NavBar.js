@@ -22,9 +22,6 @@ const NavBar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
 
-  // navbar collapse state
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
   // setting Login modal state
   const handleShowLoginModal = () => setShowLoginModal(true);
   const handleCloseLoginModal = () => setShowLoginModal(false);
@@ -39,31 +36,7 @@ const NavBar = () => {
 
   function handleLogout() {
     logout();
-    handleMenuItemClick()
     navigate("/");
-  }
-
-  // handle navbar collapse manually as a result of using Link
-  const handleNavCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
-  // handle menu item click manually as a result of using Link
-  const handleMenuItemClick = () => {
-    setIsCollapsed(false);
-  };
-
-  // upon click on Login button run modal show then menu item click
-  const handleShowLoginModalAndMenuClick = () => {
-    handleShowLoginModal();
-    handleMenuItemClick();
-  
-  }
-
-  // upon click on Join button run modal show then menu item click
-  const handleShowJoinModalAndMenuClick = () => {
-    handleShowJoinModal();
-    handleMenuItemClick();
   }
 
   return (
@@ -74,37 +47,36 @@ const NavBar = () => {
         bg="light"
         fixed="top"
         expand="md"
-        expanded={isCollapsed}
       >
         <Container className="container-border">
           <Navbar.Brand as={Link} to="/">
             <img className="mx-4 logo" src="./bookswap_logo.svg" alt="logo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={handleNavCollapse} />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="">
             <Nav className="me-auto fs-2 text-center "></Nav>
             {user && (
               <Nav>
-                <Nav.Link as={Link} to="/" onClick={handleMenuItemClick}>
+                <Nav.Link eventKey="1" as={Link} to="/">
                   <h3 className="nav-link">Home</h3>
                 </Nav.Link>
-                <Nav.Link as={Link} to="/borrowing" onClick={handleMenuItemClick}>
+                <Nav.Link eventKey="2" as={Link} to="/borrowing">
                   <h3 className="nav-link">Borrowing</h3>
                 </Nav.Link>
-                <Nav.Link as={Link} to="/lending" onClick={handleMenuItemClick}>
+                <Nav.Link eventKey="3" as={Link} to="/lending" >
                   <h3 className="nav-link">Lending</h3>
                 </Nav.Link>
-                <Nav.Link href="">
+                <Nav.Link eventKey="4" href="">
                   <BoxArrowRight className="nav-icon" onClick={handleLogout} />
                 </Nav.Link>
               </Nav>
             )}
             {!user && (
               <Nav>
-                <Nav.Link onClick={handleShowLoginModalAndMenuClick} >
+                <Nav.Link eventKey="5" onClick={handleShowLoginModal} >
                   <Button className="btn-custom">Login</Button>
                 </Nav.Link>
-                <Nav.Link onClick={handleShowJoinModalAndMenuClick}>
+                <Nav.Link eventKey="6" onClick={handleShowJoinModal}>
                   <Button className="btn-custom">Join</Button>
                 </Nav.Link>
               </Nav>
