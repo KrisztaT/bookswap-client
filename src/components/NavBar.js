@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import { BoxArrowRight } from "react-bootstrap-icons";
+import { Link } from 'react-router-dom'
 
 import LoginModal from "./LoginModal";
 import JoinModal from "./JoinModal";
@@ -50,13 +51,13 @@ const NavBar = () => {
             <Nav className="me-auto fs-2 text-center "></Nav>
             {user && (
               <Nav>
-                <Nav.Link href="#home">
+                <Nav.Link as={Link} to="/">
                   <h3 className="nav-link">Home</h3>
                 </Nav.Link>
-                <Nav.Link href="#borrowing">
+                <Nav.Link as={Link} to="/borrowing">
                   <h3 className="nav-link">Borrowing</h3>
                 </Nav.Link>
-                <Nav.Link href="#lending">
+                <Nav.Link as={Link} to="/lending">
                   <h3 className="nav-link">Lending</h3>
                 </Nav.Link>
                 <Nav.Link href="">

@@ -1,9 +1,13 @@
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+
 import { motion } from "framer-motion";
+
 import { useState } from "react";
 import { useJoin } from "../utils/useJoin";
+import { useNavigate  } from "react-router-dom"
+
 import "../styles/Button.css";
 import "../styles/Logo.css";
 import "../styles/PageHeader.css";
@@ -19,9 +23,16 @@ const JoinModal = ({ show, handleClose }) => {
 
   const { join, error, loading } = useJoin();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await join(username, firstName, email, password)
+
+    if (!error) {
+      navigate("/borrowing");
+    }
+    handleClose();
   };
 
   return (
