@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Container, Image } from 'react-bootstrap';
+import "../styles/Hero.css"
 
 const HeroSection = () => {
   return (
