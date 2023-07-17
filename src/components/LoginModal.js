@@ -2,8 +2,11 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
+
 import { useState } from "react";
 import { useLogin } from "../utils/useLogin";
+import { useNavigate  } from "react-router-dom"
+
 import "../styles/Button.css";
 import "../styles/Logo.css";
 import "../styles/PageHeader.css";
@@ -17,9 +20,16 @@ const LoginModal = ({ show, handleClose }) => {
 
   const { login, error, loading } = useLogin();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(username, password);
+
+    if (!error) {
+      navigate("/borrowing");
+    }
+    handleClose();
   };
 
   return (
