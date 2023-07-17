@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import { BoxArrowRight } from "react-bootstrap-icons";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import LoginModal from "./LoginModal";
 import JoinModal from "./JoinModal";
@@ -32,6 +32,12 @@ const NavBar = () => {
 
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const navigate = useNavigate()
+
+  function handleLogout(){
+      logout();
+      navigate("/")
+    }
 
   return (
     <div>
@@ -61,7 +67,7 @@ const NavBar = () => {
                   <h3 className="nav-link">Lending</h3>
                 </Nav.Link>
                 <Nav.Link href="">
-                  <BoxArrowRight className="nav-icon" onClick={logout} />
+                  <BoxArrowRight className="nav-icon" onClick={ handleLogout } />
                 </Nav.Link>
               </Nav>
             )}
