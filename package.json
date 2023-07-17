@@ -1,5 +1,4 @@
 {
-  "proxy": "http://localhost:3000",
   "name": "bookswap-client",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +20,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "WATCHPACK_POLLING=true react-scripts start",
+    "start": "NODE_ENV=production react-scripts start",
+    "start-dev": "WATCHPACK_POLLING=true NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
