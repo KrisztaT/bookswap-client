@@ -1,4 +1,4 @@
-import { BookAndListingContext } from "../contexts/BookAndListingContextContext";
+import { BookAndListingContext } from "../contexts/BookAndListingContext";
 import { useContext } from "react";
 
 export const useBookAndListingContext = () => {

@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 
 import { motion } from "framer-motion";
 
+import { useAddBook } from "../utils/useAddBook";
+
 import { useState } from "react";
 
 import "../styles/Button.css";
@@ -12,7 +14,9 @@ import "../styles/FormInput.css";
 import "../styles/FormContainer.css";
 
 const AddBook = () => {
-  const [imageUrl, setImageUrl] = useState("");
+  const { addBook, error, loading } = useAddBook();
+
+  const [imgUrl, setImgUrl] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [page, setPage] = useState("");
@@ -20,22 +24,32 @@ const AddBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await addBook(imgUrl, title, author, page, releaseYear);
+
+    if (!error) {
+      setImgUrl("");
+      setTitle("");
+      setAuthor("");
+      setPage("");
+      setReleaseYear("");
+    }
   };
 
   return (
-    <Container
-      className="form-container d-flex flex-column align-items-center"
-    >
+    <Container className="form-container d-flex flex-column align-items-center">
       <h1 className="page-header mt-5">Add Book to Swap Listing</h1>
-      <Form className="d-flex flex-column align-items-center" onSubmit={handleSubmit}>
+      <Form
+        className="d-flex flex-column align-items-center"
+        onSubmit={handleSubmit}
+      >
         <Form.Group controlId="imageUrl">
           <Form.Control
             type="text"
             placeholder="Image Url"
             autoFocus
             className="form-input"
-            onChange={(e) => setImageUrl(e.target.value)}
-            input={imageUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
+            value={imgUrl}
           />
         </Form.Group>
         <Form.Group controlId="title">
@@ -44,7 +58,7 @@ const AddBook = () => {
             placeholder="Title"
             className="form-input"
             onChange={(e) => setTitle(e.target.value)}
-            input={title}
+            value={title}
           />
         </Form.Group>
         <Form.Group controlId="author">
@@ -53,7 +67,7 @@ const AddBook = () => {
             placeholder="Author"
             className="form-input"
             onChange={(e) => setAuthor(e.target.value)}
-            input={author}
+            value={author}
           />
         </Form.Group>
         <Form.Group controlId="page">
@@ -62,7 +76,7 @@ const AddBook = () => {
             placeholder="Page"
             className="form-input"
             onChange={(e) => setPage(e.target.value)}
-            input={page}
+            value={page}
           />
         </Form.Group>
         <Form.Group controlId="releaseYear">
@@ -71,7 +85,7 @@ const AddBook = () => {
             placeholder="Release Year"
             className="form-input"
             onChange={(e) => setReleaseYear(e.target.value)}
-            input={releaseYear}
+            value={releaseYear}
           />
         </Form.Group>
         <motion.div
@@ -85,9 +99,14 @@ const AddBook = () => {
             },
           }}
         >
-          <Button type="submit" className="btn-custom mt-4 mb-5">
+          <Button
+            type="submit"
+            className="btn-custom mt-4 mb-5"
+            disabled={loading}
+          >
             Add
           </Button>
+          {error && <div className="error-message">{error}</div>}
         </motion.div>
       </Form>
     </Container>
