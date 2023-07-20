@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 
 import { motion } from "framer-motion";
 
-import { useAddBook } from "../utils/useAddBook";
+import { useAddBookToListing } from "../utils/useAddBookToListing";
 
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ import "../styles/FormInput.css";
 import "../styles/FormContainer.css";
 
 const AddBook = () => {
-  const { addBook, error, loading } = useAddBook();
+  const { addBookToListing, error, loading } = useAddBookToListing();
 
   const [imgUrl, setImgUrl] = useState("");
   const [title, setTitle] = useState("");
@@ -24,7 +24,7 @@ const AddBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addBook(imgUrl, title, author, page, releaseYear);
+    await addBookToListing(imgUrl, title, author, page, releaseYear);
 
     if (!error) {
       setImgUrl("");

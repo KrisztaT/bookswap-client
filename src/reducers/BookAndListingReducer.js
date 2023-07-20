@@ -2,7 +2,7 @@ export const bookAndListingReducer = (state, action) => {
   switch (action.type) {
     case "LIST_BOOK":
       return action.payload;
-    case "ADD_BOOK":
+    case "ADD_BOOK_TO_LISTING":
       return  [...state, action.payload];
     case "UPDATE_BOOK":
       return {
