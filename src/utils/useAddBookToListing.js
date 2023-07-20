@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useBookAndListingContext } from "./useBookAndListingContext";
-import { useAuthContext } from "../utils/useAuthContext";
-import { useSearchBook } from "./useSearchBook";
+import { useAuthContext } from "./useAuthContext";
 
 // retrieve the hostname of the current URL.
 const hostname = window.location.hostname;
@@ -12,17 +11,16 @@ const api =
     : process.env.REACT_APP_PROD_BACKEND_URL;
 
 // add book hook is for create book in case it doesn't exist in the database
-export const useAddBook = () => {
+export const useAddBookToListing = () => {
     // use both auth and book and listing context
   const { user } = useAuthContext();
   const { dispatch } = useBookAndListingContext();
-  const { searchBook } = useSearchBook();
 
   // create error and loading states, which will be used on the Add Book form
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  const addBook = async (imgUrl, title, author, page, releaseYear) => {
+  const addBookToListing = async (imgUrl, title, author, page, releaseYear) => {
     setLoading(true);
     setError(null);
 
@@ -32,12 +30,8 @@ export const useAddBook = () => {
       return;
     }
 
-    // call the searchBook function and passing in the title,author, setError, and setLoading as
-    // arguments. It is then assigning the result of the function call to the variable res.
-    const res = await searchBook(title, author, setError, setLoading);
-    if (!res.exists) {
-      // fetch book endpoint to add book
-      const response = await fetch(`${api}/api/book`, {
+      // fetch listing endpoint to add book
+      const response = await fetch(`${api}/api/listing`, {
         method: "POST",
         body: JSON.stringify({ imgUrl, title, author, page, releaseYear }),
         headers: {
@@ -58,15 +52,12 @@ export const useAddBook = () => {
       // if response is ok
       if (response.ok) {
         // update context
-        dispatch({ type: "ADD_BOOK", payload: result });
+        dispatch({ type: "ADD_BOOK_TO_LISTING", payload: result });
 
         // data loading is finished
         setLoading(false);
       }
-    } else {
-      // if the book already exists, then the loading is finished, hence it set to false
-      setLoading(false);
-    }
+  
   };
-  return { addBook, error, loading };
+  return { addBookToListing, error, loading };
 };
