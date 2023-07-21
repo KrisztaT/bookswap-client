@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 
 import { useState } from "react";
-import { useJoin } from "../utils/useJoin";
+import { useJoin } from "../hooks/useJoin";
 import { useNavigate  } from "react-router-dom"
 
 import "../styles/Button.css";
