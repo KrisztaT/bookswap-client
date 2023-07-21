@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddBook from "../components/AddBook";
 import LenderListing from "../components/LenderListing";
+import { useGetLenderListing } from "../hooks/useGetLenderListing";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function LendingPage() {
   const [lenderBookList, setLenderBookList] = useState([]);
+  const { getLenderListing, error } = useGetLenderListing();
+  const { user } = useAuthContext();
 
-  /*   useEffect(() => {
-    // fetch book details
-  }, []); */
+  useEffect(() => {
+    const fetchData = async () => {
+      // check if the user is available before making the API call
+      if (user) {
+        const lenderListedBooks = await getLenderListing();
+        if (lenderListedBooks !== false) {
+          setLenderBookList(lenderListedBooks);
+        }
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const addBookToLenderList = (newBook) => {
     // update the book list in the local state by adding the new book
@@ -19,7 +33,7 @@ function LendingPage() {
     console.log("Edit book.");
   };
 
-  const handleListingEdit = ( listingId) => {
+  const handleListingEdit = (listingId) => {
     // Handle the edit functionality for the book
     console.log("Edit listing.");
   };
@@ -38,6 +52,7 @@ function LendingPage() {
         handleBookEdit={handleBookEdit}
         handleListingDelete={handleListingDelete}
         handleListingEdit={handleListingEdit}
+        error={error}
       />
     </div>
   );

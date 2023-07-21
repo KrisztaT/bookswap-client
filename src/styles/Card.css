@@ -4,7 +4,16 @@
 }
 
 .card {
-    max-height: 300px;
-    max-width: 450px;
-    padding: 16px;
+    height: 280px;
+    width: 350px;
+    padding: 8px;
+    border: solid 3px #19b4b4;
 }
+
+.second-row{
+    border-top: solid 3px #19b4b4;
+}
+
+.icon-hover:hover {
+    cursor: pointer;
+  }
