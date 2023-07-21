@@ -10,8 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import JoinModal from "./JoinModal";
 
-import { useAuthContext } from "../utils/useAuthContext";
-import { useLogout } from "../utils/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
 
 import "../styles/Button.css";
 import "../styles/Logo.css";
