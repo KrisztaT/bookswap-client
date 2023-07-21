@@ -1,0 +1,10 @@
+.card_img{
+    height: 150px;
+    width: 100px;
+}
+
+.card {
+    max-height: 300px;
+    max-width: 450px;
+    padding: 16px;
+}
