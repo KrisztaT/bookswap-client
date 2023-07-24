@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
+import { useUpdateBook } from "../hooks/useUpdateBook";
 
 const EditModal = ({ show, handleClose, bookData }) => {
-  const [editedBook, setEditedBook] = useState({});
+    const [editedBook, setEditedBook] = useState();
+    const {updateBook, error, loading} = useUpdateBook()
+  
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setEditedBook((prevBook) => ({
+          ...prevBook,
+          [name]: value,
+        }));
+        console.log(editedBook);
+      };
+       
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setEditedBook((prevBook) => ({
-      ...prevBook,
-      book: {
-        ...prevBook.book,
-        [name]: value,
-      },
-    }));
-  };
-
-  const handleSaveChanges = () => {
-    console.log("Edited Book Data:", editedBook);
+  const handleSaveChanges = async () => {
+    console.log(editedBook, bookData.book._id);
+    const result = await updateBook(editedBook, bookData.book._id);
+   console.log(result)
     setEditedBook({});
     handleClose();
   };
@@ -29,7 +32,7 @@ const EditModal = ({ show, handleClose, bookData }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group as={Row} controlId="formTitle">
+            <Form.Group as={Row} controlId="formUrl">
               <Form.Label column sm={3}>
                 Image Url:
               </Form.Label>
@@ -37,7 +40,7 @@ const EditModal = ({ show, handleClose, bookData }) => {
                 <Form.Control
                   type="text"
                   name="url"
-                  value={bookData.book.imgUrl}
+                  defaultValue={bookData.book.imgUrl}
                   onChange={handleChange}
                 />
               </Col>
@@ -50,8 +53,8 @@ const EditModal = ({ show, handleClose, bookData }) => {
                 <Form.Control
                   type="text"
                   name="title"
-                  value={bookData.book.title}
-                  onChange={handleChange}
+                  defaultValue={bookData.book.title}
+                 onChange={handleChange}
                 />
               </Col>
             </Form.Group>
@@ -64,8 +67,8 @@ const EditModal = ({ show, handleClose, bookData }) => {
                 <Form.Control
                   type="text"
                   name="author"
-                  value={bookData.book.author}
-                  onChange={handleChange}
+                  defaultValue={bookData.book.author}
+                 onChange={handleChange}
                 />
               </Col>
             </Form.Group>
@@ -78,8 +81,8 @@ const EditModal = ({ show, handleClose, bookData }) => {
                 <Form.Control
                   type="number"
                   name="page"
-                  value={bookData.book.page}
-                  onChange={handleChange}
+                  defaultValue={bookData.book.page}
+                 onChange={handleChange}
                 />
               </Col>
             </Form.Group>
@@ -92,8 +95,8 @@ const EditModal = ({ show, handleClose, bookData }) => {
                 <Form.Control
                   type="number"
                   name="releaseYear"
-                  value={bookData.book.releaseYear}
-                  onChange={handleChange}
+                  defaultValue={bookData.book.releaseYear}
+                 onChange={handleChange}
                 />
               </Col>
             </Form.Group>
@@ -103,24 +106,25 @@ const EditModal = ({ show, handleClose, bookData }) => {
               </Form.Label>
               <Col sm={9}>
                 <Form.Select
-                  onChange={handleChange}
+                 onChange={handleChange}
                   defaultValue="Available"
-                  name="Status"
+                  name="availability"
                 >
-                  <option value="available">Available</option>
-                  <option value="borrowed">Borrowed</option>
+                  <option defaultValue="available">Available</option>
+                  <option defaultValue="borrowed">Borrowed</option>
                 </Form.Select>
               </Col>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose} disabled={loading}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveChanges}>
+          <Button variant="primary" onClick={handleSaveChanges} disabled={loading}>
             Save Changes
           </Button>
+          {error && <div className="error-message">{error}</div>}
         </Modal.Footer>
       </Modal>
     </>
