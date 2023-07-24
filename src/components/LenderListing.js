@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+
+import EditModal from "./EditModal";
 
 import "../styles/PageHeader.css";
 import "../styles/Card.css";
@@ -15,9 +17,23 @@ const LenderListing = ({
   handleListingEdit,
   error,
 }) => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editBook, setEditBook] = useState(null);
 
+  const handleClickEdit = (bookId) => {
+    // find the book in the books array using bookId
+    const bookToEdit = books.find(
+      (bookData) => bookData.book._id.toString() === bookId.toString()
+    );
+    setEditBook(bookToEdit);
+    handleShowEditModal()
+  };
+
+  const handleCloseEditModal = () => setShowEditModal(false);
+  const handleShowEditModal = () => setShowEditModal(true);
 
   return (
+    <div>
     <Container className="mb-5">
       <h1 className="page-header mb-3 mt-5">Listed books</h1>
       <div className="d-flex justify-content-center align-content-center flex-wrap">
@@ -61,12 +77,12 @@ const LenderListing = ({
                 >
                   {bookData.book.isCreated ? (
                   <Button
-                    onClick={() => handleBookEdit(bookData.book._id)}
+                    onClick={() => handleClickEdit(bookData.book._id)}
                     className="btn-custom-bkg"
                   >Edit book & listing
                   </Button>
                    ) : <Button
-                   onClick={() => handleListingEdit(bookData.listing._id)}
+                   onClick={() => handleClickEdit(bookData.listing._id)}
                    className="btn-custom-bkg"
                  >Edit listing
                  </Button>}
@@ -76,6 +92,8 @@ const LenderListing = ({
           ))}
       </div>
     </Container>
+    { editBook && <EditModal show={showEditModal} handleClose={handleCloseEditModal} bookData={editBook}/> }
+    </div>
   );
 };
 
