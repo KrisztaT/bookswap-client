@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
+
 import { useUpdateBookAndListing } from "../hooks/useUpdateBookAndListing";
+
 import "../styles/Button.css";
+import "../styles/PageHeader.css"
+
 
 const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
   const [editedBook, setEditedBook] = useState();
@@ -33,14 +37,15 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop="static">
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Book And Listing Details</Modal.Title>
+        <Modal.Header closeButton className="bg-light d-flex flex-column align-content-center justify-content-center">
+          <Modal.Title className="page-header">Edit Book And Listing Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             {bookData.book.isCreated ? (
               <>
-                <Form.Group as={Row} controlId="formUrl">
+                <Form.Group as={Row} controlId="formUrl" className="mt-1">
+                <p className="page-header-smaller mb-3">Book details</p>
                   <Form.Label column sm={3}>
                     Image Url:
                   </Form.Label>
@@ -108,7 +113,8 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                     />
                   </Col>
                 </Form.Group>
-                <Form.Group as={Row} controlId="formStatus">
+                <Form.Group as={Row} controlId="formStatus" className="mt-3">
+                  <p className="page-header-smaller mb-3">Listing details</p>
                   <Form.Label column sm={3}>
                     Status:
                   </Form.Label>
@@ -125,7 +131,8 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                 </Form.Group>
               </>
             ) : (
-              <Form.Group as={Row} controlId="formStatus">
+              <Form.Group as={Row} controlId="formStatus" className="mt-1">
+                <p className="page-header-smaller mb-3">Listing details</p>
                 <Form.Label column sm={3}>
                   Status:
                 </Form.Label>
@@ -143,7 +150,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
             )}
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="bg-light d-flex align-content-center justify-content-center">
           <Button
             className="btn-custom-bkg"
             onClick={handleSaveChanges}
