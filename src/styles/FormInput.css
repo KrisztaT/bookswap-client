@@ -1,6 +1,6 @@
 .form-input{
     width: 400px;
-    height: 46px;
+    height: 42px;
     margin-top: 16px;
 }
 
@@ -12,14 +12,14 @@
 @media (max-width: 834px) {
     .form-input{
         width: 350px;
-        height: 42px;
+        height: 38px;
         margin-top: 16px;
     }
   }
 
 @media (max-width: 400px) {
 .form-input {
-    width: 216px;
+    width: 280px;
     height: 32px;   
     margin-top: 16px;
 }

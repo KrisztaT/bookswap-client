@@ -2,11 +2,11 @@
   background: #19B4B4; 
   border: 2px solid #19B4B4;
   width: 130px;
-  height: 46px;
+  height: 42px;
   flex-shrink: 0;
   color:#fff;
   font-family: Open Sans;
-  font-size: 26px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal; 
@@ -31,14 +31,12 @@
   cursor: pointer;
 }
 
-
-
 @media (max-width: 834px) {
   .btn-custom {
     width: 112px;
-    height: 44px;
+    height: 40px;
     flex-shrink: 0; 
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 

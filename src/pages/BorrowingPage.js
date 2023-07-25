@@ -1,8 +1,10 @@
-function BorrowingPage() {
+import BookSearch from "../components/BookSearch";
+
+const BorrowingPage = () => {
     
     return (
       <div className="my-5 py-5">
-          This is the borrowing page.
+          <BookSearch />
       </div>
     );
   }
