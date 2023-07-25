@@ -13,8 +13,7 @@ import "../styles/Button.css";
 
 const LenderListing = ({
   books,
-  handleBookEdit,
-  handleListingEdit,
+  handleEdit,
   error,
 }) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -92,7 +91,7 @@ const LenderListing = ({
           ))}
       </div>
     </Container>
-    { editBook && <EditModal show={showEditModal} handleClose={handleCloseEditModal} bookData={editBook}/> }
+    { editBook && <EditModal show={showEditModal} handleClose={handleCloseEditModal} bookData={editBook} handleEdit={handleEdit}/> }
     </div>
   );
 };

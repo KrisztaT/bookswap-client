@@ -3,7 +3,7 @@ import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import { useUpdateBookAndListing } from "../hooks/useUpdateBookAndListing";
 import "../styles/Button.css";
 
-const EditModal = ({ show, handleClose, bookData }) => {
+const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
   const [editedBook, setEditedBook] = useState();
   const { updateBookAndListing, error, loading } =
     useUpdateBookAndListing();
@@ -25,7 +25,7 @@ const EditModal = ({ show, handleClose, bookData }) => {
       bookData.listing._id
     );
     console.log(result);
-    console.log(bookData.listing.availability);
+   handleEdit(result);
     setEditedBook({});
     handleClose();
   };

@@ -28,29 +28,28 @@ function LendingPage() {
     setLenderBookList([...lenderBookList, newBook]);
   };
 
-  const handleBookEdit = (bookId) => {
-    // Handle the edit functionality for the book
-    console.log("Edit book.");
+  const handleEdit = (editedBook) => {
+    if (lenderBookList && lenderBookList.length > 0) {
+      // map to create a new array with the modified book
+      const updatedBookList = lenderBookList.map((book) => {
+        return book.book._id === editedBook.book._id ? editedBook : book;
+      });
+      // set the updated book list to the state
+      setLenderBookList(updatedBookList);
+    }
   };
 
-  const handleListingEdit = (listingId) => {
-    // Handle the edit functionality for the book
-    console.log("Edit listing.");
-  };
-
-  const handleListingDelete = (listingId) => {
+  /* const handleListingDelete = (listingId) => {
     // Handle the delete functionality for the book
     console.log("Delete listing.");
-  };
+  }; */
 
   console.log(lenderBookList);
   return (
     <div className="my-5 py-5">
       <LenderListing
         books={lenderBookList}
-        handleBookEdit={handleBookEdit}
-        handleListingDelete={handleListingDelete}
-        handleListingEdit={handleListingEdit}
+        handleEdit={handleEdit}
         error={error}
       />
       <AddBook addBookToLenderList={addBookToLenderList} />
