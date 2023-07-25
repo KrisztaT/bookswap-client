@@ -1,5 +1,5 @@
-// custom hook for updating book and listing information
-// this hook is responsible for making the API call to update the book and listing details in the backend.
+// custom hook for delete listing information
+// this hook is responsible for making the API call to delete listing details in the backend.
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
@@ -28,7 +28,7 @@ export const useDeleteListing = () => {
       return;
     }
 
-    // make a PATCH request to the backend API to update the book and listing information.
+    // make a DELETE request to the backend API to delete listing information.
     const response = await fetch(`${api}/api/listing//${listingId}`, {
       method: "DELETE",
       headers: {

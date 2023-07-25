@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import EditModal from "./EditModal";
 
 import { useDeleteListing } from "../hooks/useDeleteListing";
+import { classNameSelector, classNameSelectorRow } from "../utils/classNameSelector";
 
 import "../styles/PageHeader.css";
 import "../styles/Card.css";
@@ -17,7 +18,7 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editBook, setEditBook] = useState(null);
 
-  const { deleteListing, error: hookError, loading} = useDeleteListing();
+  const { deleteListing, error: hookError, loading } = useDeleteListing();
 
   const handleClickEdit = (bookId) => {
     // find the book in the books array using bookId
@@ -32,12 +33,11 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const handleShowEditModal = () => setShowEditModal(true);
 
   const handleClickDelete = async (listingId) => {
-   const result = await deleteListing(listingId);
-   if (result){
-    handleListingDelete(listingId);
-   }
+    const result = await deleteListing(listingId);
+    if (result) {
+      handleListingDelete(listingId);
+    }
   };
-
 
   return (
     <div>
@@ -49,7 +49,7 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
             books.map((bookData) => (
               <Card
                 key={`${bookData.book._id}-${bookData.listing._id}`}
-                className="card m-3"
+                className= {classNameSelector(bookData.listing.availability)}
               >
                 <Row>
                   <Col xs={4}>
@@ -72,10 +72,10 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                     <p>{bookData.book.releaseYear}</p>
                   </Col>
                 </Row>
-                <Row className="mb-2 mt-2 second-row ">
+                <Row className={classNameSelectorRow(bookData.listing.availability)}>
                   <Col
                     xs={12}
-                    className="mt-2 mb-2 d-flex align-items-center justify-content-start"
+                    className="mt-1 mb-1 d-flex align-items-center justify-content-start"
                   >
                     <p>Status: {bookData.listing.availability} </p>
                   </Col>
@@ -89,35 +89,45 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                       <>
                         <Button
                           onClick={() => handleClickEdit(bookData.book._id)}
-                          className="btn-custom-bkg"
+                          className="btn-custom-bkg m-2"
                         >
                           Edit book & listing
                         </Button>
                         <Button
-                          onClick={() => handleClickDelete(bookData.listing._id)}
-                          variant="danger"
+                          onClick={() =>
+                            handleClickDelete(bookData.listing._id)
+                          }
+                          
                           disabled={loading}
+                          className="btn-custom-bkg-danger"
                         >
                           Delete listing
                         </Button>
-                        {hookError && <div className="error-message">{hookError}</div>}
+                        {hookError && (
+                          <div className="error-message">{hookError}</div>
+                        )}
                       </>
                     ) : (
                       <>
                         <Button
                           onClick={() => handleClickEdit(bookData.book._id)}
-                          className="btn-custom-bkg"
+                          className="btn-custom-bkg m-2"
                         >
                           Edit listing
                         </Button>
                         <Button
-                          onClick={() => handleClickDelete(bookData.listing._id)}
-                          variant="danger"
+                          onClick={() =>
+                            handleClickDelete(bookData.listing._id)
+                          }
+                          
                           disabled={loading}
+                          className="btn-custom-bkg-danger"
                         >
                           Delete listing
                         </Button>
-                        {hookError && <div className="error-message">{hookError}</div>}
+                        {hookError && (
+                          <div className="error-message">{hookError}</div>
+                        )}
                       </>
                     )}
                   </Col>
