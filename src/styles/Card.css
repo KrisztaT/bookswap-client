@@ -4,16 +4,21 @@
 }
 
 .card {
-    height: 280px;
     width: 350px;
     padding: 8px;
-    border: solid 3px #19b4b4;
+    border: solid 3px #19B4B4;
+    
 }
 
 .second-row{
-    border-top: solid 3px #19b4b4;
+    padding: 8px;
+    background-color: rgba(25, 180, 180, 0.15);
 }
 
 .icon-hover:hover {
     cursor: pointer;
   }
+
+p{
+    margin: 0;
+}

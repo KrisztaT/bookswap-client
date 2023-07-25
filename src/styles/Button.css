@@ -12,6 +12,17 @@
   line-height: normal; 
 }
 
+.btn-custom-bkg{
+  background: #19B4B4; 
+  border: 2px solid #19B4B4;
+}
+
+.btn-custom-bkg:hover{
+  background: #233565;
+  border-color: #233565;
+  cursor: pointer;
+}
+
 .btn-custom:hover {
   background: #233565;
   border-color: #233565;
