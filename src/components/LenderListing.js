@@ -7,6 +7,8 @@ import Button from "react-bootstrap/Button";
 
 import EditModal from "./EditModal";
 
+import { useDeleteListing } from "../hooks/useDeleteListing";
+
 import "../styles/PageHeader.css";
 import "../styles/Card.css";
 import "../styles/Button.css";
@@ -14,6 +16,8 @@ import "../styles/Button.css";
 const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editBook, setEditBook] = useState(null);
+
+  const { deleteListing, error: hookError, loading} = useDeleteListing();
 
   const handleClickEdit = (bookId) => {
     // find the book in the books array using bookId
@@ -26,6 +30,14 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
 
   const handleCloseEditModal = () => setShowEditModal(false);
   const handleShowEditModal = () => setShowEditModal(true);
+
+  const handleClickDelete = async (listingId) => {
+   const result = await deleteListing(listingId);
+   if (result){
+    handleListingDelete(listingId);
+   }
+  };
+
 
   return (
     <div>
@@ -82,26 +94,30 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           Edit book & listing
                         </Button>
                         <Button
-                          onClick={() => handleListingDelete(bookData.listing._id)}
+                          onClick={() => handleClickDelete(bookData.listing._id)}
                           variant="danger"
+                          disabled={loading}
                         >
                           Delete listing
                         </Button>
+                        {hookError && <div className="error-message">{hookError}</div>}
                       </>
                     ) : (
                       <>
                         <Button
-                          onClick={() => handleListingDelete(bookData.book._id)}
+                          onClick={() => handleClickEdit(bookData.book._id)}
                           className="btn-custom-bkg"
                         >
                           Edit listing
                         </Button>
                         <Button
-                          onClick={() => handleListingDelete(bookData.listing._id)}
+                          onClick={() => handleClickDelete(bookData.listing._id)}
                           variant="danger"
+                          disabled={loading}
                         >
                           Delete listing
                         </Button>
+                        {hookError && <div className="error-message">{hookError}</div>}
                       </>
                     )}
                   </Col>
