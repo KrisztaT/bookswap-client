@@ -11,11 +11,7 @@ import "../styles/PageHeader.css";
 import "../styles/Card.css";
 import "../styles/Button.css";
 
-const LenderListing = ({
-  books,
-  handleEdit,
-  error,
-}) => {
+const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editBook, setEditBook] = useState(null);
 
@@ -25,7 +21,7 @@ const LenderListing = ({
       (bookData) => bookData.book._id.toString() === bookId.toString()
     );
     setEditBook(bookToEdit);
-    handleShowEditModal()
+    handleShowEditModal();
   };
 
   const handleCloseEditModal = () => setShowEditModal(false);
@@ -33,65 +29,95 @@ const LenderListing = ({
 
   return (
     <div>
-    <Container className="mb-5">
-      <h1 className="page-header mb-3 mt-5">Listed books</h1>
-      <div className="d-flex justify-content-center align-content-center flex-wrap">
-        {error && <div className="error-message">{error}</div>}
-        {books &&
-          books.map((bookData) => (
-            <Card
-              key={`${bookData.book._id}-${bookData.listing._id}`}
-              className="card m-3"
-            >
-              <Row>
-                <Col xs={4}>
-                  <img
-                    src={bookData.book.imgUrl}
-                    alt={bookData.book.title}
-                    style={{
-                      width: "100px",
-                      height: "140px",
-                      objectFit: "cover",
-                    }}
-                  />
-                </Col>
-                <Col xs={8}>
-                  <p className="mb-2">
-                    <b>{bookData.book.title}</b>
-                  </p>
-                  <p>{bookData.book.author}</p>
-                  <p>{bookData.book.page} pages</p>
-                  <p>{bookData.book.releaseYear}</p>
-                </Col>
-              </Row>
-              <Row className="mb-2 mt-2 second-row ">
-                <Col xs={12} className="mt-2 mb-2 d-flex align-items-center justify-content-start">
-                  <p>Status: {bookData.listing.availability} </p>
-                </Col>
-              </Row>
-              <Row className="">
-                <Col 
-                  xs={12}
-                  className="d-flex align-items-center justify-content-center "
-                >
-                  {bookData.book.isCreated ? (
-                  <Button
-                    onClick={() => handleClickEdit(bookData.book._id)}
-                    className="btn-custom-bkg"
-                  >Edit book & listing
-                  </Button>
-                   ) : <Button
-                   onClick={() => handleClickEdit(bookData.book._id)}
-                   className="btn-custom-bkg"
-                 >Edit listing
-                 </Button>}
-                </Col>
-              </Row>
-            </Card>
-          ))}
-      </div>
-    </Container>
-    { editBook && <EditModal show={showEditModal} handleClose={handleCloseEditModal} bookData={editBook} handleEdit={handleEdit}/> }
+      <Container className="mb-5">
+        <h1 className="page-header mb-3 mt-5">Listed books</h1>
+        <div className="d-flex justify-content-center align-content-center flex-wrap">
+          {error && <div className="error-message">{error}</div>}
+          {books &&
+            books.map((bookData) => (
+              <Card
+                key={`${bookData.book._id}-${bookData.listing._id}`}
+                className="card m-3"
+              >
+                <Row>
+                  <Col xs={4}>
+                    <img
+                      src={bookData.book.imgUrl}
+                      alt={bookData.book.title}
+                      style={{
+                        width: "100px",
+                        height: "140px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Col>
+                  <Col xs={8}>
+                    <p className="mb-2">
+                      <b>{bookData.book.title}</b>
+                    </p>
+                    <p>{bookData.book.author}</p>
+                    <p>{bookData.book.page} pages</p>
+                    <p>{bookData.book.releaseYear}</p>
+                  </Col>
+                </Row>
+                <Row className="mb-2 mt-2 second-row ">
+                  <Col
+                    xs={12}
+                    className="mt-2 mb-2 d-flex align-items-center justify-content-start"
+                  >
+                    <p>Status: {bookData.listing.availability} </p>
+                  </Col>
+                </Row>
+                <Row className="">
+                  <Col
+                    xs={12}
+                    className="d-flex align-items-center justify-content-center "
+                  >
+                    {bookData.book.isCreated ? (
+                      <>
+                        <Button
+                          onClick={() => handleClickEdit(bookData.book._id)}
+                          className="btn-custom-bkg"
+                        >
+                          Edit book & listing
+                        </Button>
+                        <Button
+                          onClick={() => handleListingDelete(bookData.listing._id)}
+                          variant="danger"
+                        >
+                          Delete listing
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          onClick={() => handleListingDelete(bookData.book._id)}
+                          className="btn-custom-bkg"
+                        >
+                          Edit listing
+                        </Button>
+                        <Button
+                          onClick={() => handleListingDelete(bookData.listing._id)}
+                          variant="danger"
+                        >
+                          Delete listing
+                        </Button>
+                      </>
+                    )}
+                  </Col>
+                </Row>
+              </Card>
+            ))}
+        </div>
+      </Container>
+      {editBook && (
+        <EditModal
+          show={showEditModal}
+          handleClose={handleCloseEditModal}
+          bookData={editBook}
+          handleEdit={handleEdit}
+        />
+      )}
     </div>
   );
 };

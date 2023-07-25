@@ -39,10 +39,16 @@ function LendingPage() {
     }
   };
 
-  /* const handleListingDelete = (listingId) => {
-    // Handle the delete functionality for the book
-    console.log("Delete listing.");
-  }; */
+  const handleListingDelete = (listingId) => {
+    if (lenderBookList && lenderBookList.length > 0) {
+      // filter out the book that has been deleted
+      const updatedBookList = lenderBookList.filter((book) => {
+        return book.listing._id !== listingId;
+      });
+      // set the updated book list to the state
+      setLenderBookList(updatedBookList);
+    }
+  }; 
 
   console.log(lenderBookList);
   return (
@@ -50,6 +56,7 @@ function LendingPage() {
       <LenderListing
         books={lenderBookList}
         handleEdit={handleEdit}
+        handleListingDelete={handleListingDelete}
         error={error}
       />
       <AddBook addBookToLenderList={addBookToLenderList} />
