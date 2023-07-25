@@ -82,7 +82,7 @@ const LenderListing = ({
                   >Edit book & listing
                   </Button>
                    ) : <Button
-                   onClick={() => handleClickEdit(bookData.listing._id)}
+                   onClick={() => handleClickEdit(bookData.book._id)}
                    className="btn-custom-bkg"
                  >Edit listing
                  </Button>}
