@@ -5,20 +5,24 @@ import Container from "react-bootstrap/Container";
 import { motion } from "framer-motion";
 
 import { useState } from "react";
+import { useSearchBookListings } from "../hooks/useSearchBookListings";
 
 import "../styles/Button.css";
 import "../styles/PageHeader.css";
 import "../styles/FormInput.css";
 import "../styles/FormContainer.css";
 
-const SearchBook = () => {
+
+const SearchBook = ({ addResultBooks }) => {
     const [searchTitle, setSearchTitle] = useState("");
+    const {searchBookListings, error, loading} = useSearchBookListings()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // call the hook to handle book search by title
-        // useSearchBookListing(searchTitle);
-        console.log("Searching for books with title:", searchTitle);
+        const searchBookLists = await searchBookListings(searchTitle);
+        addResultBooks(searchBookLists)
+        setSearchTitle("")
       };
 
   return (
@@ -48,11 +52,11 @@ const SearchBook = () => {
             },
           }}
         >
-          {/* {error && <div className="error-message">{error}</div>} */}
+          {error && <div className="error-message">{error}</div>}
           <Button
             type="submit"
             className="btn-custom mt-4 mb-4"
-            /* disabled={loading} */
+            disabled={loading}
           >
             Search
           </Button>
