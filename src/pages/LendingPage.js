@@ -53,13 +53,13 @@ function LendingPage() {
   console.log(lenderBookList);
   return (
     <div className="my-5 py-5">
+      <AddBook addBookToLenderList={addBookToLenderList} />
       <LenderListing
         books={lenderBookList}
         handleEdit={handleEdit}
         handleListingDelete={handleListingDelete}
         error={error}
       />
-      <AddBook addBookToLenderList={addBookToLenderList} />
     </div>
   );
 }
