@@ -18,7 +18,7 @@ export const useAddBookToListing = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  const addBookToListing = async (imgUrl, title, author, page, releaseYear) => {
+  const addBookToListing = async (imgUrl, title, author, page, releaseYear, location, condition) => {
     setLoading(true);
     setError(null);
 
@@ -31,7 +31,7 @@ export const useAddBookToListing = () => {
     // fetch listing endpoint to add book
     const response = await fetch(`${api}/api/listing`, {
       method: "POST",
-      body: JSON.stringify({ imgUrl, title, author, page, releaseYear }),
+      body: JSON.stringify({ imgUrl, title, author, page, releaseYear, location, condition }),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,

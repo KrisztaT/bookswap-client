@@ -16,7 +16,7 @@ const SearchResult = ({ resultBooks }) => {
           {resultBooks.listings &&
             resultBooks.listings.map((listingData, index) => (
               <Card
-                key={`${resultBooks.book._id}-${listingData._id}`}
+                key={`${index}`}
                 className="card-available m-2"
               >
                 <Row>
@@ -25,8 +25,8 @@ const SearchResult = ({ resultBooks }) => {
                       src={resultBooks.book.imgUrl}
                       alt={resultBooks.book.title}
                       style={{
-                        width: "100px",
-                        height: "140px",
+                        width: "80px",
+                        height: "120px",
                         objectFit: "cover",
                       }}
                     />
@@ -48,6 +48,8 @@ const SearchResult = ({ resultBooks }) => {
                     <p className="fw-bold">Status: {listingData.availability} </p>
                     <p>Lender: {listingData.lender.first_name} </p>
                     <p>Email: {listingData.lender.email} </p>
+                    <p>Location: {listingData.location}</p>
+                    <p>Condition: {listingData.condition}</p>
                   </Col>
                 </Row>
               </Card>

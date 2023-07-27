@@ -18,7 +18,7 @@ export const useSearchBookListings = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  const searchBookListings = async (searchTitle) => {
+  const searchBookListings = async (searchTitle, author, location, condition) => {
     setError(null);
     setLoading(true);
 
@@ -27,9 +27,19 @@ export const useSearchBookListings = () => {
       setError("Please login.");
       return;
     }
+    // build the base API URL title is mandatory to provide
+  const titleQueryParam = `title=${encodeURIComponent(searchTitle)}`;
+
+  // build the optional query parameters based on user input
+  const authorQueryParam = author ? `&author=${encodeURIComponent(author)}` : '';
+  const locationQueryParam = location ? `&location=${encodeURIComponent(location)}` : '';
+  const conditionQueryParam = condition ? `&condition=${encodeURIComponent(condition)}` : '';
+
+  // build the URL with the optional query parameters to fetch
+  const fetchURL = `${api}/api/listing/search?${titleQueryParam}${authorQueryParam}${locationQueryParam}${conditionQueryParam}`;
 
     // fetch search endpoint from listing
-    const response = await fetch(`${api}/api/listing/search?title=${searchTitle}`, {
+    const response = await fetch(fetchURL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

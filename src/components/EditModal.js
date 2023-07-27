@@ -4,13 +4,11 @@ import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import { useUpdateBookAndListing } from "../hooks/useUpdateBookAndListing";
 
 import "../styles/Button.css";
-import "../styles/PageHeader.css"
-
+import "../styles/PageHeader.css";
 
 const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
   const [editedBook, setEditedBook] = useState();
-  const { updateBookAndListing, error, loading } =
-    useUpdateBookAndListing();
+  const { updateBookAndListing, error, loading } = useUpdateBookAndListing();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,7 +27,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
       bookData.listing._id
     );
     console.log(result);
-   handleEdit(result);
+    handleEdit(result);
     setEditedBook({});
     handleClose();
   };
@@ -37,15 +35,20 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop="static">
-        <Modal.Header closeButton className="bg-light d-flex flex-column align-content-center justify-content-center">
-          <Modal.Title className="page-header">Edit Book And Listing Details</Modal.Title>
+        <Modal.Header
+          closeButton
+          className="bg-light d-flex flex-column align-content-center justify-content-center"
+        >
+          <Modal.Title className="page-header">
+            Edit Book And Listing Details
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             {bookData.book.isCreated ? (
               <>
                 <Form.Group as={Row} controlId="formUrl" className="mt-1">
-                <p className="page-header-smaller mb-3">Book details</p>
+                  <p className="page-header-smaller mb-3">Book details</p>
                   <Form.Label column sm={3}>
                     Image Url:
                   </Form.Label>
@@ -121,32 +124,98 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                   <Col sm={9}>
                     <Form.Select
                       onChange={handleChange}
-                      defaultValue="Available"
+                      defaultValue={bookData.listing.availability}
                       name="availability"
                     >
-                      <option defaultValue="available">available</option>
-                      <option defaultValue="borrowed">borrowed</option>
+                      <option value="available">available</option>
+                      <option value="borrowed">borrowed</option>
+                    </Form.Select>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="location">
+                  <Form.Label column sm={3}>
+                    Location:
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Control
+                      type="text"
+                      name="location"
+                      onChange={handleChange}
+                      defaultValue={bookData.listing.location}
+                    />
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="condition">
+                  <Form.Label column sm={3}>
+                    Condition:
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Select
+                      type="text"
+                      name="condition"
+                      className=""
+                      onChange={handleChange}
+                      defaultValue={bookData.listing.condition}
+                    >
+                      <option value="new">new</option>
+                      <option value="good">good</option>
+                      <option value="acceptable">acceptable</option>
+                      <option value="used">used</option>
                     </Form.Select>
                   </Col>
                 </Form.Group>
               </>
             ) : (
-              <Form.Group as={Row} controlId="formStatus" className="mt-1">
-                <p className="page-header-smaller mb-3">Listing details</p>
-                <Form.Label column sm={3}>
-                  Status:
-                </Form.Label>
-                <Col sm={9}>
-                  <Form.Select
-                    onChange={handleChange}
-                    defaultValue="Available"
-                    name="availability"
-                  >
-                    <option defaultValue="available">available</option>
-                    <option defaultValue="borrowed">borrowed</option>
-                  </Form.Select>
-                </Col>
-              </Form.Group>
+              <>
+                <Form.Group as={Row} controlId="formStatus" className="mt-1">
+                  <p className="page-header-smaller mb-3">Listing details</p>
+                  <Form.Label column sm={3}>
+                    Status:
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Select
+                      onChange={handleChange}
+                      defaultValue={bookData.listing.availability}
+                      name="availability"
+                    >
+                      <option value="available">available</option>
+                      <option value="borrowed">borrowed</option>
+                    </Form.Select>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="location">
+                  <Form.Label column sm={3}>
+                    Location:
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Control
+                      type="text"
+                      name="location"
+                      onChange={handleChange}
+                      defaultValue={bookData.listing.location}
+                    />
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="condition">
+                  <Form.Label column sm={3}>
+                    Condition:
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Select
+                      type="text"
+                      name="condition"
+                      className=""
+                      onChange={handleChange}
+                      defaultValue={bookData.listing.condition}
+                    >
+                      <option value="new">new</option>
+                      <option value="good">good</option>
+                      <option value="acceptable">acceptable</option>
+                      <option value="used">used</option>
+                    </Form.Select>
+                  </Col>
+                </Form.Group>
+              </>
             )}
           </Form>
         </Modal.Body>
