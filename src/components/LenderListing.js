@@ -75,9 +75,11 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                 <Row className={classNameSelectorRow(bookData.listing.availability)}>
                   <Col
                     xs={12}
-                    className="mt-1 mb-1 d-flex align-items-center justify-content-start"
+                    className="mt-1 mb-1 d-flex flex-column align-items-start justify-content-center"
                   >
-                    <p>Status: {bookData.listing.availability} </p>
+                    <p className="fw-bold">Status: {bookData.listing.availability}</p>
+                    <p>Location: {bookData.listing.location} </p>
+                    <p>Condition: {bookData.listing.condition} </p>
                   </Col>
                 </Row>
                 <Row className="">

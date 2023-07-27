@@ -1,26 +1,52 @@
-.form-input{
-    width: 400px;
-    height: 42px;
-    margin-top: 16px;
+.form-input {
+  width: 400px;
+  height: 42px;
+  margin-top: 16px;
 }
 
 .form-input:focus {
-    outline: 2px solid #19B4B4;
-    outline-style: solid;
-  }
+  outline: 2px solid #19b4b4;
+  outline-style: solid;
+}
 
 @media (max-width: 834px) {
-    .form-input{
-        width: 300px;
-        height: 38px;
-        margin-top: 16px;
-    }
+  .form-input {
+    width: 300px;
+    height: 38px;
+    margin-top: 16px;
   }
+}
 
 @media (max-width: 400px) {
-.form-input {
+  .form-input {
     width: 280px;
-    height: 32px;   
+    height: 32px;
     margin-top: 16px;
+  }
 }
+
+.form-input-mandatory {
+  width: 400px;
+  height: 42px;
+  margin-top: 16px;
+}
+
+.form-input-mandatory::placeholder {
+  color: red;
+}
+
+@media (max-width: 834px) {
+  .form-input-mandatory {
+    width: 300px;
+    height: 38px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-input-mandatory {
+    width: 280px;
+    height: 32px;
+    margin-top: 16px;
+  }
 }

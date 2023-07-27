@@ -4,17 +4,19 @@
 }
 
 .card-available{
-    width: 350px;
+    width: 330px;
     padding: 8px;
     border: solid 3px #19B4B4;
     margin-left: 12px;
+    margin-bottom: 12px;
 }
 
 .card-borrowed{
-    width: 350px;
+    width: 330px;
     padding: 8px;
     border: solid 3px #233565;
     margin-left: 12px;
+    margin-bottom: 12px;
 }
 
 .second-row-available{

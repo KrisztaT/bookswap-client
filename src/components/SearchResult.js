@@ -16,7 +16,7 @@ const SearchResult = ({ resultBooks }) => {
           {resultBooks.listings &&
             resultBooks.listings.map((listingData, index) => (
               <Card
-                key={`${resultBooks.book._id}-${listingData._id}`}
+                key={`${index}`}
                 className="card-available m-2"
               >
                 <Row>
