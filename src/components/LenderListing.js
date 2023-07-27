@@ -57,8 +57,8 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                       src={bookData.book.imgUrl}
                       alt={bookData.book.title}
                       style={{
-                        width: "100px",
-                        height: "140px",
+                        width: "80px",
+                        height: "120px",
                         objectFit: "cover",
                       }}
                     />

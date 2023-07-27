@@ -25,8 +25,8 @@ const SearchResult = ({ resultBooks }) => {
                       src={resultBooks.book.imgUrl}
                       alt={resultBooks.book.title}
                       style={{
-                        width: "100px",
-                        height: "140px",
+                        width: "80px",
+                        height: "120px",
                         objectFit: "cover",
                       }}
                     />

@@ -139,7 +139,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                   <Col sm={9}>
                     <Form.Control
                       type="text"
-                      placeholder="location"
+                      name="location"
                       onChange={handleChange}
                       defaultValue={bookData.listing.location}
                     />
@@ -152,7 +152,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                   <Col sm={9}>
                     <Form.Control
                       type="text"
-                      placeholder="condition"
+                      name="condition"
                       onChange={handleChange}
                       defaultValue={bookData.listing.condition}
                     />
@@ -184,7 +184,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                   <Col sm={9}>
                     <Form.Control
                       type="text"
-                      placeholder="location"
+                      name="location"
                       onChange={handleChange}
                       defaultValue={bookData.listing.location}
                     />
@@ -197,7 +197,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                   <Col sm={9}>
                     <Form.Control
                       type="text"
-                      placeholder="condition"
+                      name="condition"
                       onChange={handleChange}
                       defaultValue={bookData.listing.condition}
                     />
