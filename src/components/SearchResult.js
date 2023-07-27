@@ -48,6 +48,8 @@ const SearchResult = ({ resultBooks }) => {
                     <p className="fw-bold">Status: {listingData.availability} </p>
                     <p>Lender: {listingData.lender.first_name} </p>
                     <p>Email: {listingData.lender.email} </p>
+                    <p>Location: {listingData.location}</p>
+                    <p>Condition: {listingData.condition}</p>
                   </Col>
                 </Row>
               </Card>

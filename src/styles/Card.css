@@ -9,6 +9,7 @@
     border: solid 3px #19B4B4;
     margin-left: 12px;
     margin-bottom: 12px;
+    line-height: 18px;
 }
 
 .card-borrowed{
@@ -17,6 +18,7 @@
     border: solid 3px #233565;
     margin-left: 12px;
     margin-bottom: 12px;
+    line-height: 18px;
 }
 
 .second-row-available{
