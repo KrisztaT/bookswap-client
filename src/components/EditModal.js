@@ -127,8 +127,8 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                       defaultValue={bookData.listing.availability}
                       name="availability"
                     >
-                      <option defaultValue="available">available</option>
-                      <option defaultValue="borrowed">borrowed</option>
+                      <option value="available">available</option>
+                      <option value="borrowed">borrowed</option>
                     </Form.Select>
                   </Col>
                 </Form.Group>
@@ -150,12 +150,18 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                     Condition:
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Control
+                    <Form.Select
                       type="text"
                       name="condition"
+                      className=""
                       onChange={handleChange}
                       defaultValue={bookData.listing.condition}
-                    />
+                    >
+                      <option value="new">new</option>
+                      <option value="good">good</option>
+                      <option value="acceptable">acceptable</option>
+                      <option value="used">used</option>
+                    </Form.Select>
                   </Col>
                 </Form.Group>
               </>
@@ -172,8 +178,8 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                       defaultValue={bookData.listing.availability}
                       name="availability"
                     >
-                      <option defaultValue="available">available</option>
-                      <option defaultValue="borrowed">borrowed</option>
+                      <option value="available">available</option>
+                      <option value="borrowed">borrowed</option>
                     </Form.Select>
                   </Col>
                 </Form.Group>
@@ -195,12 +201,18 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                     Condition:
                   </Form.Label>
                   <Col sm={9}>
-                    <Form.Control
+                    <Form.Select
                       type="text"
                       name="condition"
+                      className=""
                       onChange={handleChange}
                       defaultValue={bookData.listing.condition}
-                    />
+                    >
+                      <option value="new">new</option>
+                      <option value="good">good</option>
+                      <option value="acceptable">acceptable</option>
+                      <option value="used">used</option>
+                    </Form.Select>
                   </Col>
                 </Form.Group>
               </>

@@ -61,7 +61,7 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="imageUrl">
               <Form.Control
                 type="text"
-                placeholder="Image Url"
+                placeholder="Image Url (required)"
                 autoFocus
                 className="form-input"
                 onChange={(e) => setImgUrl(e.target.value)}
@@ -71,7 +71,7 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="title">
               <Form.Control
                 type="text"
-                placeholder="Title"
+                placeholder="Title (required)"
                 className="form-input"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
@@ -80,7 +80,7 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="author">
               <Form.Control
                 type="text"
-                placeholder="Author"
+                placeholder="Author (required)"
                 className="form-input"
                 onChange={(e) => setAuthor(e.target.value)}
                 value={author}
@@ -88,8 +88,8 @@ const AddBook = ({ addBookToLenderList }) => {
             </Form.Group>
             <Form.Group controlId="page">
               <Form.Control
-                type="text"
-                placeholder="Page"
+                type="number"
+                placeholder="Page (required)"
                 className="form-input"
                 onChange={(e) => setPage(e.target.value)}
                 value={page}
@@ -97,8 +97,8 @@ const AddBook = ({ addBookToLenderList }) => {
             </Form.Group>
             <Form.Group controlId="releaseYear">
               <Form.Control
-                type="text"
-                placeholder="Release Year"
+                type="number"
+                placeholder="Release Year (required)"
                 className="form-input"
                 onChange={(e) => setReleaseYear(e.target.value)}
                 value={releaseYear}
@@ -118,20 +118,28 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="location">
               <Form.Control
                 type="text"
-                placeholder="Location"
+                placeholder="Location (required)"
                 className="form-input"
                 onChange={(e) => setLocation(e.target.value)}
                 value={location}
               />
             </Form.Group>
             <Form.Group controlId="condition">
-              <Form.Control
+              <Form.Select
                 type="text"
                 placeholder="Condition"
                 className="form-input"
                 onChange={(e) => setCondition(e.target.value)}
                 value={condition}
-              />
+              >
+                <option value="" disabled>
+                  Select Condition
+                </option>
+                <option value="new">new</option>
+                <option value="good">good</option>
+                <option value="acceptable">acceptable</option>
+                <option value="used">used</option>
+              </Form.Select>
             </Form.Group>
           </Col>
         </Row>
