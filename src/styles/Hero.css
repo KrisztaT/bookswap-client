@@ -24,13 +24,22 @@
 
 .hero-bookshelf{
     width: 1000px;
-    height: 264px;
+    height: 260px;
+    margin-bottom:60px;
 }
 
-
+@media (max-width: 1422px) {
+    .hero-img {
+        width: 1000px;
+    }
+    .hero-bookshelf{
+        margin-top: 72px;
+    }
+  }
 @media (max-width: 834px) {
     .hero-img {
         width: 100vw;
+        height: 50vh;
     }
     .hero-text{
         width: 100vw;
@@ -47,14 +56,14 @@
   @media (max-width: 400px) {
     .hero-img{
         width: 100vw;
-        height: 284px; 
+        height: 40vh;
     }
     .hero-text{
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 18px;
-        margin-top: 8px;
+        margin-top: 36px;
     }
     .hero-highlight-text{
         font-size: 16px;
@@ -65,6 +74,6 @@
     .hero-bookshelf{
         width: 100vw;
         height: 124px; 
-        margin-top: 24px;
+        margin-top: 36px;
     }
   }

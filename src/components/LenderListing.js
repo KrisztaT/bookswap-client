@@ -13,6 +13,7 @@ import { classNameSelector, classNameSelectorRow } from "../utils/classNameSelec
 import "../styles/PageHeader.css";
 import "../styles/Card.css";
 import "../styles/Button.css";
+import "../styles/Page.css";
 
 const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -40,9 +41,9 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   };
 
   return (
-    <div>
-      <Container className="mb-5" id="list">
-        <h1 className="page-header mb-3 mt-5">Listed books</h1>
+    <div className="" id="list">
+      <Container className="my-5" >
+        <h1 className="page-header my-3">Listed books</h1>
         <div className="d-flex justify-content-center align-content-center flex-wrap">
           {error && <div className="error-message">{error}</div>}
           {books &&

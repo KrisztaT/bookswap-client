@@ -13,6 +13,7 @@ import "../styles/Button.css";
 import "../styles/PageHeader.css";
 import "../styles/FormInput.css";
 import "../styles/FormContainer.css";
+import "../styles/Page.css";
 
 const SearchBook = ({ addResultBooks }) => {
   const [searchTitle, setSearchTitle] = useState("");
@@ -49,8 +50,8 @@ const SearchBook = ({ addResultBooks }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center">
-      <h1 className="page-header mt-5 text-center">Book search</h1>
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-5">
+      <h1 className="page-header text-center page-upper-padding">Book search</h1>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col className="d-flex flex-column align-items-center">

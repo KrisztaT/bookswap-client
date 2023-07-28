@@ -52,7 +52,7 @@ function LendingPage() {
 
   console.log(lenderBookList);
   return (
-    <div className="my-5 py-5">
+    <div className="mb-5 pb-5">
       <AddBook addBookToLenderList={addBookToLenderList} />
       <LenderListing
         books={lenderBookList}
