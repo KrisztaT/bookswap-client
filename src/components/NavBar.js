@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { BoxArrowRight } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -64,17 +63,9 @@ const NavBar = () => {
                 <Nav.Link eventKey="2" as={Link} to="/borrowing">
                   <h3 className="nav-link">Borrowing</h3>
                 </Nav.Link>
-                <NavDropdown title="Lending" id="lending-dropdown" className="nav-link text-center bg-light">
-                  <NavDropdown.Item eventKey="3" as={Link} to="/lending" className="nav-link bg-light">
-                    <h3 className="nav-link text-center">Lending</h3>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#add" className="nav-link bg-light">
-                    <h3 className="nav-link-small text-left mx-5"> ➔ Add Book Listing</h3>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#list" className="nav-link bg-light">
-                    <h3 className="nav-link-small text-left mx-5"> ➔ Listed Books</h3>
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Link eventKey="3" as={Link} to="/lending">
+                  <h3 className="nav-link">Lending</h3>
+                </Nav.Link>
                 <Nav.Link eventKey="4" href="">
                   <BoxArrowRight className="nav-icon" onClick={handleLogout} />
                 </Nav.Link>

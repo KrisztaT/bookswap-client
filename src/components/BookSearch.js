@@ -50,7 +50,7 @@ const SearchBook = ({ addResultBooks }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-5">
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-1">
       <h1 className="page-header text-center page-upper-padding">Book search</h1>
       <Form onSubmit={handleSubmit}>
         <Row>
@@ -118,7 +118,7 @@ const SearchBook = ({ addResultBooks }) => {
           {error && <div className="error-message">{error}</div>}
           <Button
             type="submit"
-            className="btn-custom mt-4 mb-4"
+            className="btn-custom mt-3 mb-3"
             disabled={loading}
           >
             Search
