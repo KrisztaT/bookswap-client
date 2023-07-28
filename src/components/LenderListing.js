@@ -55,7 +55,7 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                   <Col xs={4}>
                     <img
                       src={bookData.book.imgUrl}
-                      alt={bookData.book.title}
+                      alt={"No Image Provided for: " + bookData.book.title}
                       style={{
                         width: "80px",
                         height: "120px",
@@ -68,8 +68,8 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                       <b>{bookData.book.title}</b>
                     </p>
                     <p>{bookData.book.author}</p>
-                    <p>{bookData.book.page} pages</p>
-                    <p>{bookData.book.releaseYear}</p>
+                    <p>{bookData.book.page ? bookData.book.page + " pages" : ""}</p>
+                    <p>{bookData.book.releaseYear ? bookData.book.releaseYear : ""} </p>
                   </Col>
                 </Row>
                 <Row className={classNameSelectorRow(bookData.listing.availability)}>

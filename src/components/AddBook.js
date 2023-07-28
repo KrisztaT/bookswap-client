@@ -61,7 +61,7 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="imageUrl">
               <Form.Control
                 type="text"
-                placeholder="Image Url (required)"
+                placeholder="Image Url"
                 autoFocus
                 className="form-input"
                 onChange={(e) => setImgUrl(e.target.value)}
@@ -89,7 +89,7 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="page">
               <Form.Control
                 type="number"
-                placeholder="Page (required)"
+                placeholder="Page"
                 className="form-input"
                 onChange={(e) => setPage(e.target.value)}
                 value={page}
@@ -98,7 +98,7 @@ const AddBook = ({ addBookToLenderList }) => {
             <Form.Group controlId="releaseYear">
               <Form.Control
                 type="number"
-                placeholder="Release Year (required)"
+                placeholder="Release Year"
                 className="form-input"
                 onChange={(e) => setReleaseYear(e.target.value)}
                 value={releaseYear}
