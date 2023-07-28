@@ -7,10 +7,14 @@
     line-height: normal;
   }
   
-  .nav-link:hover {
-    color: #19b4b4;
-  }
-  
+  .navbar .nav-link.active,
+  .navbar .nav-link:focus,
+  .navbar .nav-link:hover  {
+  color: #19b4b4;
+  background-color: transparent;
+  outline: none;
+}
+
   .nav-icon{
     color: #19b4b4;
     width: 52px;
@@ -37,4 +41,9 @@
     .nav-link{
       font-size: 1.25rem;
     }
+  }
+
+  .navbar-toggler {
+    background-color: #19b4b4;
+    color: #233565;
   }
