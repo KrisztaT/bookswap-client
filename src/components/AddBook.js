@@ -50,7 +50,7 @@ const AddBook = ({ addBookToLenderList }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center">
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center" id="add">
       <h1 className="page-header mt-5">
         Add Book to Swap Listing{" "}
       </h1>
