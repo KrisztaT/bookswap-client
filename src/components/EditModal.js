@@ -55,7 +55,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
                   <Col sm={9}>
                     <Form.Control
                       type="text"
-                      name="url"
+                      name="imgUrl"
                       defaultValue={bookData.book.imgUrl}
                       onChange={handleChange}
                     />
