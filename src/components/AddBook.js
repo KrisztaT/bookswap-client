@@ -51,14 +51,14 @@ const AddBook = ({ addBookToLenderList }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-5" id="add">
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-1">
       <h1 className="page-header page-upper-padding">
         Add Book to Swap Listing{" "}
       </h1>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col className="d-flex flex-column align-items-center">
-            <h1 className="page-header-smaller mt-4">Book details</h1>
+            <h1 className="page-header-smaller mt-3">Book details</h1>
             <Form.Group controlId="imageUrl">
               <Form.Control
                 type="text"
@@ -107,7 +107,7 @@ const AddBook = ({ addBookToLenderList }) => {
             </Form.Group>
           </Col>
           <Col className="d-flex flex-column align-items-center">
-            <h1 className="page-header-smaller mt-4">Listing details</h1>
+            <h1 className="page-header-smaller mt-3">Listing details</h1>
             <Form.Group controlId="availability">
               <Form.Control
                 type="text"
@@ -158,7 +158,7 @@ const AddBook = ({ addBookToLenderList }) => {
           {error && <div className="error-message">{error}</div>}
           <Button
             type="submit"
-            className="btn-custom mt-4 mb-5"
+            className="btn-custom mt-3 mb-3"
             disabled={loading}
           >
             Add
