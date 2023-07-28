@@ -1,49 +1,72 @@
 .nav-link {
-    color: #233565;
-    font-family: Open-Sans;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  
-  .navbar .nav-link.active,
-  .navbar .nav-link:focus,
-  .navbar .nav-link:hover  {
+  color: #233565;
+  font-family: Open-Sans;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:focus,
+.navbar .nav-link:hover {
   color: #19b4b4;
   background-color: transparent;
   outline: none;
 }
 
-  .nav-icon{
-    color: #19b4b4;
-    width: 52px;
-    height: 52px;
-    margin-left: 48px;
-  }
+.nav-link-small {
+  color: #233565;
+  font-family: Open-Sans;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 
-  .nav-icon:hover{
-    color: #233565;
-  }
+.navbar .nav-link-small.active,
+.navbar .nav-link-small:focus,
+.navbar .nav-link-small:hover {
+  color: #19b4b4;
+  background-color: transparent;
+  outline: none;
+}
 
-  @media (max-width: 834px) {
-    .nav-link{
-      font-size: 1.45rem;
-    }
-    .nav-icon{
-      width: 42px;
-      height: 42px;
-      margin-left: 16px;
-    }
-  }
-  
-  @media (max-width: 400px) {
-    .nav-link{
-      font-size: 1.25rem;
-    }
-  }
+.nav-icon {
+  color: #19b4b4;
+  width: 52px;
+  height: 52px;
+  margin-left: 48px;
+}
 
-  .navbar-toggler {
-    background-color: #19b4b4;
-    color: #233565;
+.nav-icon:hover {
+  color: #233565;
+}
+
+@media (max-width: 834px) {
+  .nav-link {
+    font-size: 1.45rem;
   }
+  .nav-link-small {
+    font-size: 1.5rem;
+  }
+  .nav-icon {
+    width: 42px;
+    height: 42px;
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-link {
+    font-size: 1.25rem;
+  }
+  .nav-link-small {
+    font-size: 1rem;
+  }
+}
+
+.navbar-toggler {
+  background-color: #19b4b4;
+  color: #233565;
+}

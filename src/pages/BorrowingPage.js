@@ -11,7 +11,7 @@ const BorrowingPage = () => {
   };
 
     return (
-      <div className="my-5 py-5">
+      <div className="mb-5 pb-5">
           <BookSearch  addResultBooks= {addResultBooks}/>
           <SearchResult resultBooks={searchBookLists}/>
       </div>

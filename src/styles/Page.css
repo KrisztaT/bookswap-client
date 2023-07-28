@@ -1,0 +1,15 @@
+.page-upper-padding {
+  margin-top: 108px;
+}
+
+@media (max-width: 834px) {
+  .page-upper-padding {
+    margin-top: 106px;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-upper-padding {
+    margin-top: 80px;
+  }
+}

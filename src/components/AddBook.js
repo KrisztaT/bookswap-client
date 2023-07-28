@@ -14,6 +14,7 @@ import "../styles/Button.css";
 import "../styles/PageHeader.css";
 import "../styles/FormInput.css";
 import "../styles/FormContainer.css";
+import "../styles/Page.css";
 
 const AddBook = ({ addBookToLenderList }) => {
   const { addBookToListing, error, loading } = useAddBookToListing();
@@ -50,8 +51,8 @@ const AddBook = ({ addBookToLenderList }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center" id="add">
-      <h1 className="page-header mt-5">
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-5" id="add">
+      <h1 className="page-header page-upper-padding">
         Add Book to Swap Listing{" "}
       </h1>
       <Form onSubmit={handleSubmit}>
