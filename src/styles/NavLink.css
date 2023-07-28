@@ -11,6 +11,8 @@
   .navbar .nav-link:focus,
   .navbar .nav-link:hover  {
   color: #19b4b4;
+  background-color: transparent;
+  outline: none;
 }
 
   .nav-icon{
@@ -39,4 +41,9 @@
     .nav-link{
       font-size: 1.25rem;
     }
+  }
+
+  .navbar-toggler {
+    background-color: #19b4b4;
+    color: #233565;
   }
