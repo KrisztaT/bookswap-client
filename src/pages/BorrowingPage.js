@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BookSearch from "../components/BookSearch";
 import SearchResult from "../components/SearchResult";
+import "../styles/Page.css";
 
 const BorrowingPage = () => {
     
@@ -11,7 +12,7 @@ const BorrowingPage = () => {
   };
 
     return (
-      <div className="mb-5 pb-5">
+      <div className="page-upper-padding mb-5">
           <BookSearch  addResultBooks= {addResultBooks}/>
           <SearchResult resultBooks={searchBookLists}/>
       </div>

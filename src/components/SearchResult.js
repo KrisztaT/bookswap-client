@@ -10,14 +10,14 @@ import "../styles/Button.css";
 const SearchResult = ({ resultBooks }) => {
     console.log(resultBooks)
     return (
-      <Container className="mb-4 mt-5">
+      <Container className="mb-5 mt-5">
         <h1 className="page-header mb-3 mt-4">Search Result</h1>
         <div className="d-flex justify-content-center align-content-center flex-wrap">
           {resultBooks.listings &&
             resultBooks.listings.map((listingData, index) => (
               <Card
                 key={`${index}`}
-                className="card-available m-2"
+                className="card-available m-2 mb-5"
               >
                 <Row>
                   <Col xs={4}>

@@ -51,8 +51,8 @@ const AddBook = ({ addBookToLenderList }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-1">
-      <h1 className="page-header page-upper-padding">
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-3 mb-5" id="add-book">
+      <h1 className="page-header mt-4">
         Add Book to Swap Listing{" "}
       </h1>
       <Form onSubmit={handleSubmit}>
@@ -158,7 +158,7 @@ const AddBook = ({ addBookToLenderList }) => {
           {error && <div className="error-message">{error}</div>}
           <Button
             type="submit"
-            className="btn-custom mt-3 mb-3"
+            className="btn-custom mt-3 mb-5"
             disabled={loading}
           >
             Add

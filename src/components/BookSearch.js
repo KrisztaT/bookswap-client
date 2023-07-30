@@ -50,8 +50,8 @@ const SearchBook = ({ addResultBooks }) => {
   };
 
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-1">
-      <h1 className="page-header text-center page-upper-padding">Book search</h1>
+    <Container className="form-container d-flex flex-column align-items-center justify-content-center pt-1">
+      <h1 className="page-header text-center my-3">Book search</h1>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col className="d-flex flex-column align-items-center">

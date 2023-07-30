@@ -3,11 +3,13 @@ import AddBook from "../components/AddBook";
 import LenderListing from "../components/LenderListing";
 import { useGetLenderListing } from "../hooks/useGetLenderListing";
 import { useAuthContext } from "../hooks/useAuthContext";
+import "../styles/Page.css";
 
 function LendingPage() {
   const [lenderBookList, setLenderBookList] = useState([]);
   const { getLenderListing, error } = useGetLenderListing();
   const { user } = useAuthContext();
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,14 +54,14 @@ function LendingPage() {
 
   console.log(lenderBookList);
   return (
-    <div className="mb-5 pb-5">
-      <AddBook addBookToLenderList={addBookToLenderList} />
+    <div className="page-upper-padding">
       <LenderListing
         books={lenderBookList}
         handleEdit={handleEdit}
         handleListingDelete={handleListingDelete}
         error={error}
       />
+      <AddBook addBookToLenderList={addBookToLenderList} />
     </div>
   );
 }
