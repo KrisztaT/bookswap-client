@@ -16,6 +16,15 @@
     line-height: 18px;
 }
 
+.card-add{
+    width: 330px;
+    padding: 8px;
+    border: dotted 3px #d621cd;
+    margin-left: 12px;
+    margin-bottom: 12px;
+    line-height: 18px;
+}
+
 .second-row-available{
     padding: 8px;
     background-color: rgba(25, 180, 180, 0.15);
@@ -25,6 +34,12 @@
 .second-row-borrowed{
     padding: 8px;
     background-color: rgba(35, 53, 101, 0.15);
+    margin-top: 8px;
+}
+
+.second-row-add{
+    padding: 8px;
+    background-color: rgba(164, 53, 151, 0.15);
     margin-top: 8px;
 }
 

@@ -29,7 +29,7 @@ export const useUpdateBookAndListing= () => {
     }
 
     // make a PATCH request to the backend API to update the book and listing information.
-    const response = await fetch(`${api}/api/listing/updateBookAndListing/${bookId}/${listingId}`, {
+    const response = await fetch(`${api}/api/listing/${bookId}/${listingId}`, {
       method: "PATCH",
       body: JSON.stringify(editedBook),
       headers: {

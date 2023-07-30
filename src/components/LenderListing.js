@@ -4,15 +4,20 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import { JournalPlus } from "react-bootstrap-icons";
 
 import EditModal from "./EditModal";
 
 import { useDeleteListing } from "../hooks/useDeleteListing";
-import { classNameSelector, classNameSelectorRow } from "../utils/classNameSelector";
+import {
+  classNameSelector,
+  classNameSelectorRow,
+} from "../utils/classNameSelector";
 
 import "../styles/PageHeader.css";
 import "../styles/Card.css";
 import "../styles/Button.css";
+import "../styles/Page.css";
 
 const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -40,16 +45,46 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   };
 
   return (
-    <div>
-      <Container className="mb-4 mt-5">
-        <h1 className="page-header my-3">Listed books</h1>
+    <div className="pt-1">
+      <Container className="mb-4">
+        <h1 className="page-header my-2 mb-3">Listed books</h1>
         <div className="d-flex justify-content-center align-content-center flex-wrap">
           {error && <div className="error-message">{error}</div>}
+          <Card key="info" className="card-add">
+            <Row className="my-2">
+              <JournalPlus
+                className="icon-hover mx-2"
+                size={100}
+                color="#233565"
+              />
+            </Row>
+            <Row className="second-row-add my-2">
+              <Col
+                xs={12}
+                className=" d-flex flex-column align-items-start justify-content-center"
+              >
+                <p className="my-2 fw-semibold">
+                To add a book to the listing, click on the 'Jump to Add Book' button below and fill out the form.
+                </p>
+              </Col>
+            </Row>
+            <Row className="">
+              <Col
+                xs={12}
+                className="d-flex align-items-center justify-content-center"
+              >
+                <Button href="#add-book" className="btn-custom-bkg">
+                  Jump to Add Book
+                </Button>
+              </Col>
+            </Row>
+          </Card>
+
           {books &&
             books.map((bookData) => (
               <Card
                 key={`${bookData.book._id}-${bookData.listing._id}`}
-                className= {classNameSelector(bookData.listing.availability)}
+                className={classNameSelector(bookData.listing.availability)}
               >
                 <Row>
                   <Col xs={4}>
@@ -68,16 +103,28 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                       <b>{bookData.book.title}</b>
                     </p>
                     <p>{bookData.book.author}</p>
-                    <p>{bookData.book.page ? bookData.book.page + " pages" : ""}</p>
-                    <p>{bookData.book.releaseYear ? bookData.book.releaseYear : ""} </p>
+                    <p>
+                      {bookData.book.page ? bookData.book.page + " pages" : ""}
+                    </p>
+                    <p>
+                      {bookData.book.releaseYear
+                        ? bookData.book.releaseYear
+                        : ""}{" "}
+                    </p>
                   </Col>
                 </Row>
-                <Row className={classNameSelectorRow(bookData.listing.availability)}>
+                <Row
+                  className={classNameSelectorRow(
+                    bookData.listing.availability
+                  )}
+                >
                   <Col
                     xs={12}
                     className="mt-1 mb-1 d-flex flex-column align-items-start justify-content-center"
                   >
-                    <p className="fw-bold">Status: {bookData.listing.availability}</p>
+                    <p className="fw-bold">
+                      Status: {bookData.listing.availability}
+                    </p>
                     <p>Location: {bookData.listing.location} </p>
                     <p>Condition: {bookData.listing.condition} </p>
                   </Col>
@@ -99,7 +146,6 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           onClick={() =>
                             handleClickDelete(bookData.listing._id)
                           }
-                          
                           disabled={loading}
                           className="btn-custom-bkg-danger"
                         >
@@ -121,7 +167,6 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           onClick={() =>
                             handleClickDelete(bookData.listing._id)
                           }
-                          
                           disabled={loading}
                           className="btn-custom-bkg-danger"
                         >
