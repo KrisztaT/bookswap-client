@@ -27,6 +27,7 @@ export const useJoin = () => {
     if (!response.ok) {
       setLoading(false);
       setError(result.error);
+      return false;
     }
     if (response.ok) {
       // save user to localstorage (username and token)
@@ -37,6 +38,7 @@ export const useJoin = () => {
 
       // data loading is finished
       setLoading(false);
+      return true;
     }
   };
   return { join, error, loading };

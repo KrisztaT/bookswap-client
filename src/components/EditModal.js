@@ -27,9 +27,11 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
       bookData.listing._id
     );
     console.log(result);
+    if (result){
     handleEdit(result);
     setEditedBook({});
     handleClose();
+  }
   };
 
   return (
@@ -219,7 +221,8 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
             )}
           </Form>
         </Modal.Body>
-        <Modal.Footer className="bg-light d-flex align-content-center justify-content-center">
+        <Modal.Footer className="bg-light d-flex flex-column align-content-center justify-content-center">
+        {error && <div className="error-message">{error}</div>}
           <Button
             className="btn-custom-bkg"
             onClick={handleSaveChanges}
@@ -227,7 +230,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
           >
             Save Changes
           </Button>
-          {error && <div className="error-message">{error}</div>}
+          
         </Modal.Footer>
       </Modal>
     </>
