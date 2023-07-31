@@ -27,12 +27,12 @@ const JoinModal = ({ show, handleClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await join(username, firstName, email, password)
+    const result = await join(username, firstName, email, password)
 
-    if (!error) {
+    if (result) {
       navigate("/borrowing");
+      handleClose();
     }
-    handleClose();
   };
 
   return (
@@ -84,7 +84,7 @@ const JoinModal = ({ show, handleClose }) => {
                 input={password}
               />
             </Form.Group>
-
+            {error && <div className="error-message mt-3">{error}</div>}
             <motion.div
               className="d-flex flex-column align-items-center justify-content-center"
               initial={{ rotateZ: 0 }}
@@ -96,10 +96,10 @@ const JoinModal = ({ show, handleClose }) => {
                 },
               }}
             >
-              <Button type="submit" className="btn-custom m-5" disabled={loading}>
+              <Button type="submit" className="btn-custom m-3" disabled={loading}>
                 Join
               </Button>
-              {error && <div className="error-message">{error}</div>}
+              
             </motion.div>
           </Form>
         </Modal.Body>

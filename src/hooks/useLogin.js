@@ -26,6 +26,7 @@ export const useLogin = () => {
     if (!response.ok) {
       setLoading(false);
       setError(result.error);
+      return false;
     }
     if (response.ok) {
       // save user to localstorage (username and token)
@@ -36,6 +37,7 @@ export const useLogin = () => {
 
       // data loading is finished
       setLoading(false);
+      return true;
     }
   };
   return { login, error, loading };

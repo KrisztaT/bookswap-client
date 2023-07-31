@@ -24,12 +24,13 @@ const LoginModal = ({ show, handleClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password);
+    const result = await login(username, password);
 
-    if (!error) {
+    if (result) {
       navigate("/borrowing");
+      handleClose();
     }
-    handleClose();
+    
   };
 
   return (
@@ -63,7 +64,7 @@ const LoginModal = ({ show, handleClose }) => {
                 input={password}
               />
             </Form.Group>
-
+            {error && <div className="error-message mt-3">{error}</div>}
             <motion.div
               className="d-flex flex-column align-items-center justify-content-center"
               initial={{ rotateZ: 0 }}
@@ -82,7 +83,6 @@ const LoginModal = ({ show, handleClose }) => {
               >
                 Login
               </Button>
-              {error && <div className="error-message">{error}</div>}
             </motion.div>
           </Form>
         </Modal.Body>
