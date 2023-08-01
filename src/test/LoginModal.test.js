@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "./CustomRenderer";
+import { render, screen, fireEvent} from "./CustomRenderer";
 import "@testing-library/jest-dom";
 import NavBar from "../components/NavBar";
 import { MemoryRouter } from "react-router-dom";
