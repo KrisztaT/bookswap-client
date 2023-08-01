@@ -1,37 +1,71 @@
-import React from 'react';
-import { render, screen, fireEvent } from './CustomRenderer';
-import '@testing-library/jest-dom';
+import React from "react";
+import { render, screen, fireEvent } from "./CustomRenderer";
+import "@testing-library/jest-dom";
 import NavBar from "../components/NavBar";
+import { MemoryRouter } from "react-router-dom";
 
-test('Navigation bar contains Login and Join buttons', () => {
-  render(<NavBar />);
+// integration test between AuthContext-NavBar-Login-Join Button and Login-Join Modal
+describe("Integration tests for AuthContext-NavBar-Login-Join Button and Login-Join Modal", () => {
+  test("Navigation bar contains Login and Join buttons", () => {
+    render(
+      // mock Router used for wrapping the NavBar
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
-  const loginButton = screen.getByText('Login');
-  const joinButton = screen.getByText('Join');
+    // get the login button element from the screen using the text Login
+    const loginButton = screen.getByText("Login");
 
-  expect(loginButton).toBeInTheDocument();
-  expect(joinButton).toBeInTheDocument();
-});
-  
-test('Upon click on Login button modal opens', () => {
-  render(<NavBar />);
+    // get the join button element from the screen using the text Join
+    const joinButton = screen.getByText("Join");
 
-  const loginButton = screen.getByText('Login');
- 
-  fireEvent.click(loginButton);
+    // it is expected that the loginButton element is present in the document
+    expect(loginButton).toBeInTheDocument();
 
-  const modal = screen.getByRole('dialog');
-  expect(modal).toBeInTheDocument();
-});
+    // it is expected that the joinButton element is present in the document
+    expect(joinButton).toBeInTheDocument();
+  });
 
+  test("Upon click on Login button modal opens", () => {
+    render(
+      // mock Router used for wrapping the NavBar
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
-test('Upon click on Join button modal opens', () => {
-  render(<NavBar />);
+    // get the login button element from the screen using the text Login
+    const loginButton = screen.getByText("Login");
 
-  const joinButton = screen.getByText('Join');
- 
-  fireEvent.click(joinButton);
+    // simulate a click event the button
+    fireEvent.click(loginButton);
 
-  const modal = screen.getByRole('dialog');
-  expect(modal).toBeInTheDocument();
+    // get the modal element from the screen using the role dialog
+    const modal = screen.getByRole("dialog");
+
+    // it is expected that the modal element is present in the document after the click
+    expect(modal).toBeInTheDocument();
+  });
+
+  test("Upon click on Join button modal opens", () => {
+    render(
+      // mock Router used for wrapping the NavBar
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
+
+    // get the join button element from the screen using the text Join
+    const joinButton = screen.getByText("Join");
+
+    // simulate a click event the button
+    fireEvent.click(joinButton);
+
+    // get the modal element from the screen using the role dialog
+    const modal = screen.getByRole("dialog");
+
+    // it is expected that the modal element is present in the document after the click
+    expect(modal).toBeInTheDocument();
+  });
 });
