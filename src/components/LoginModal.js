@@ -35,7 +35,7 @@ const LoginModal = ({ show, handleClose }) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} backdrop="static">
+      <Modal show={show} onHide={handleClose} backdrop="static" data-testid="login-modal">
         <Modal.Header
           closeButton
           className="bg-light d-flex flex-column align-items-center justify-content-center"
@@ -80,6 +80,7 @@ const LoginModal = ({ show, handleClose }) => {
                 type="submit"
                 className="btn-custom m-3"
                 disabled={loading}
+                data-testid="login-button"
               >
                 Login
               </Button>
