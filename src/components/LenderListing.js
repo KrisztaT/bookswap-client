@@ -60,13 +60,13 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   return (
     <div className="pt-1">
       <Container className="mb-4">
-        <h1 className="page-header my-2 mb-3">Listed books</h1>
+        <h1 className="page-header mt-2 mb-3">Listed books</h1>
         <div className="d-flex justify-content-center align-content-center flex-wrap">
           {error && <div className="error-message">{error}</div>}
           <Card key="info" className="card-add">
             <Row className="my-2">
               <JournalPlus
-                className="mx-2"
+                className=""
                 size={100}
                 color="#233565"
               />

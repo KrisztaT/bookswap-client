@@ -2,12 +2,11 @@
 // this hook is responsible for making the API call to add login details to the database.
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { getApiBaseUrl } from "../utils/getApiUrl";
 
-const hostname = window.location.hostname;
-const api =
-  hostname === "localhost"
-    ? process.env.REACT_APP_DEV_BACKEND_URL
-    : process.env.REACT_APP_PROD_BACKEND_URL;
+// get back the api url based on the hostname of the current URL.
+const api = getApiBaseUrl();
+
 
 export const useLogin = () => {
   // create error and loading state set to null

@@ -2,13 +2,10 @@
 // this hook is responsible for making the API call to update the book and listing details in the backend.
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { getApiBaseUrl } from "../utils/getApiUrl";
 
-// get the hostname of the current URL to determine the API endpoint.
-const hostname = window.location.hostname;
-const api =
-  hostname === "localhost"
-    ? process.env.REACT_APP_DEV_BACKEND_URL
-    : process.env.REACT_APP_PROD_BACKEND_URL;
+// get back the api url based on the hostname of the current URL.
+const api = getApiBaseUrl();
 
 export const useUpdateBookAndListing = () => {
   // use the useAuthContext hook to access the user's token for authorization.

@@ -2,14 +2,11 @@
 // this hook is responsible for making the API call to search book listing details
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { getApiBaseUrl } from "../utils/getApiUrl";
 
-// retrieve the hostname of the current URL.
-const hostname = window.location.hostname;
-// if the hostname is localhost the dev backend is used if not the prod backend is used
-const api =
-  hostname === "localhost"
-    ? process.env.REACT_APP_DEV_BACKEND_URL
-    : process.env.REACT_APP_PROD_BACKEND_URL;
+// get back the api url based on the hostname of the current URL.
+const api = getApiBaseUrl();
+
 
 // search book listing is for searching book listing in the database based on title
 export const useSearchBookListings = () => {
