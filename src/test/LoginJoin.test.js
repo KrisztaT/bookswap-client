@@ -7,6 +7,7 @@ import { MemoryRouter } from "react-router-dom";
 // integration test between AuthContext-NavBar-Login-Join Button and Login-Join Modal
 describe("Integration tests for AuthContext-NavBar-Login-Join Button and Login-Join Modal", () => {
   test("Navigation bar contains Login and Join buttons", () => {
+    // render NavBar using custom renderer method
     render(
       // mock Router used for wrapping the NavBar
       <MemoryRouter>
@@ -28,6 +29,7 @@ describe("Integration tests for AuthContext-NavBar-Login-Join Button and Login-J
   });
 
   test("Upon click on Login button modal opens", () => {
+    // render NavBar using custom renderer method
     render(
       // mock Router used for wrapping the NavBar
       <MemoryRouter>
@@ -38,7 +40,7 @@ describe("Integration tests for AuthContext-NavBar-Login-Join Button and Login-J
     // get the login button element from the screen using the text Login
     const loginButton = screen.getByText("Login");
 
-    // simulate a click event the button
+    // simulate a click event on the button
     fireEvent.click(loginButton);
 
     // get the modal element from the screen using the role dialog
@@ -49,6 +51,7 @@ describe("Integration tests for AuthContext-NavBar-Login-Join Button and Login-J
   });
 
   test("Upon click on Join button modal opens", () => {
+    // render NavBar using custom renderer method
     render(
       // mock Router used for wrapping the NavBar
       <MemoryRouter>

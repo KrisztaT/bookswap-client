@@ -10,15 +10,16 @@ const api =
     ? process.env.REACT_APP_DEV_BACKEND_URL
     : process.env.REACT_APP_PROD_BACKEND_URL;
 
-export const useUpdateBookAndListing= () => {
+export const useUpdateBookAndListing = () => {
   // use the useAuthContext hook to access the user's token for authorization.
   const { user } = useAuthContext();
-  // initialize error and loading states using the useState hook.
+  // initialise error and loading states using the useState hook.
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
   // function to update book and listing details
   const updateBookAndListing = async (editedBook, bookId, listingId) => {
+    // set states to starting state
     setLoading(true);
     setError(null);
 
@@ -31,7 +32,10 @@ export const useUpdateBookAndListing= () => {
     // make a PATCH request to the backend API to update the book and listing information.
     const response = await fetch(`${api}/api/listing/${bookId}/${listingId}`, {
       method: "PATCH",
+      // include the request body including the changes requested on the edit modal
       body: JSON.stringify(editedBook),
+      // set the headers for the request, including 'Content-Type' as 'application/json'
+      // and 'Authorization' to authenticate the user using their bearer token
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
@@ -41,19 +45,24 @@ export const useUpdateBookAndListing= () => {
     // parse the response from the API request into JSON format.
     const result = await response.json();
 
-    // if the response status is not ok, set the error state with the error message from the server, set loading to false and return false.
+    // if the response status is not ok
     if (!response.ok) {
+      // data loading is finished
       setLoading(false);
+      // set the error state with the error message from the server
       setError(result.error);
+      // return false when the fetching does not give back a listing object
       return false;
     }
 
-    // if the response status is ok, set the loading state to false and return the result.
+    // if the response status is ok
     if (response.ok) {
+      // data loading is finished
       setLoading(false);
+      // pass back the result
       return result;
     }
   };
 
-  return { updateBookAndListing, error, loading};
+  return { updateBookAndListing, error, loading };
 };

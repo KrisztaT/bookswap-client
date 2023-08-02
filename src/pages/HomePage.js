@@ -1,9 +1,10 @@
 import HeroSection from "../components/HeroSection";
 
+// Home page rendering Hero section
 function HomePage() {
   return (
     <div className="">
-        <HeroSection />
+      <HeroSection />
     </div>
   );
 }
