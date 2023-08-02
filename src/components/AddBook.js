@@ -17,8 +17,10 @@ import "../styles/FormContainer.css";
 import "../styles/Page.css";
 
 const AddBook = ({ addBookToLenderList }) => {
+  // custom hook to handle adding a book to the listing
   const { addBookToListing, error, loading } = useAddBookToListing();
 
+  // states to store form input values
   const [imgUrl, setImgUrl] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -27,6 +29,7 @@ const AddBook = ({ addBookToLenderList }) => {
   const [location, setLocation] = useState("");
   const [condition, setCondition] = useState("");
 
+  // handle form submission, calling addBookToListing function to manage api call
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newBook = await addBookToListing(
@@ -38,8 +41,11 @@ const AddBook = ({ addBookToLenderList }) => {
       location,
       condition
     );
+    // if the api request was successful
     if (newBook !== false) {
+      // add the newly added book to the lender list state in the parent
       addBookToLenderList(newBook);
+      // reset form input values after successful book addition
       setImgUrl("");
       setTitle("");
       setAuthor("");
@@ -50,11 +56,14 @@ const AddBook = ({ addBookToLenderList }) => {
     }
   };
 
+  // Form layout for adding book listing
   return (
-    <Container className="form-container d-flex flex-column align-items-center justify-content-center mt-3 mb-5" id="add-book">
-      <h1 className="page-header mt-4">
-        Add Book to Swap Listing{" "}
-      </h1>
+    <div className="d-flex flex-column align-items-center justify-content-center mx-2 mb-4">  
+    <Container
+      className="form-container d-flex flex-column align-items-center justify-content-center mt-3 mb-5"
+      id="add-book"
+    >
+      <h1 className="page-header mt-4">Add Book to Swap Listing </h1>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col className="d-flex flex-column align-items-center">
@@ -63,7 +72,6 @@ const AddBook = ({ addBookToLenderList }) => {
               <Form.Control
                 type="text"
                 placeholder="Image Url"
-                autoFocus
                 className="form-input"
                 onChange={(e) => setImgUrl(e.target.value)}
                 value={imgUrl}
@@ -134,7 +142,7 @@ const AddBook = ({ addBookToLenderList }) => {
                 value={condition}
               >
                 <option value="" disabled>
-                  Select Condition
+                  Select Condition (required)
                 </option>
                 <option value="new">new</option>
                 <option value="good">good</option>
@@ -166,6 +174,7 @@ const AddBook = ({ addBookToLenderList }) => {
         </motion.div>
       </Form>
     </Container>
+    </div>
   );
 };
 

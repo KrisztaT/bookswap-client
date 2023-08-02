@@ -1,24 +1,30 @@
+// custom hook for searching book listings
+// this hook is responsible for making the API call to search book listing details
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { getApiBaseUrl } from "../utils/getApiUrl";
 
-// retrieve the hostname of the current URL.
-const hostname = window.location.hostname;
-// if the hostname is localhost the dev backend is used if not the prod backend is used
-const api =
-  hostname === "localhost"
-    ? process.env.REACT_APP_DEV_BACKEND_URL
-    : process.env.REACT_APP_PROD_BACKEND_URL;
+// get back the api url based on the hostname of the current URL.
+const api = getApiBaseUrl();
+
 
 // search book listing is for searching book listing in the database based on title
 export const useSearchBookListings = () => {
-  // use both auth and book and listing context
+  // use auth context and deconstruct user object (user who logged in)
   const { user } = useAuthContext();
 
-  // create error and loading states, which will be used on the Add Book form
+  // create error and loading states, which will be used on the search form
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  const searchBookListings = async (searchTitle, author, location, condition) => {
+  // function to manage api request
+  const searchBookListings = async (
+    searchTitle,
+    author,
+    location,
+    condition
+  ) => {
+    // set states to starting state
     setError(null);
     setLoading(true);
 
@@ -27,20 +33,29 @@ export const useSearchBookListings = () => {
       setError("Please login.");
       return;
     }
+
     // build the base API URL title is mandatory to provide
-  const titleQueryParam = `title=${encodeURIComponent(searchTitle)}`;
+    const titleQueryParam = `title=${encodeURIComponent(searchTitle)}`;
 
-  // build the optional query parameters based on user input
-  const authorQueryParam = author ? `&author=${encodeURIComponent(author)}` : '';
-  const locationQueryParam = location ? `&location=${encodeURIComponent(location)}` : '';
-  const conditionQueryParam = condition ? `&condition=${encodeURIComponent(condition)}` : '';
+    // build the optional query parameters based on user input
+    const authorQueryParam = author
+      ? `&author=${encodeURIComponent(author)}`
+      : "";
+    const locationQueryParam = location
+      ? `&location=${encodeURIComponent(location)}`
+      : "";
+    const conditionQueryParam = condition
+      ? `&condition=${encodeURIComponent(condition)}`
+      : "";
 
-  // build the URL with the optional query parameters to fetch
-  const fetchURL = `${api}/api/listing/search?${titleQueryParam}${authorQueryParam}${locationQueryParam}${conditionQueryParam}`;
+    // build the URL with the optional query parameters to fetch
+    const fetchURL = `${api}/api/listing/search?${titleQueryParam}${authorQueryParam}${locationQueryParam}${conditionQueryParam}`;
 
     // fetch search endpoint from listing
     const response = await fetch(fetchURL, {
       method: "GET",
+      // set the headers for the request, including 'Content-Type' as 'application/json'
+      // and 'Authorization' to authenticate the user using their bearer token
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
@@ -52,15 +67,17 @@ export const useSearchBookListings = () => {
     // check if the response from the API request is not successful
     // set loading to false and set error to error message
     if (!response.ok) {
-       // data loading is finished
-       setLoading(false);
+      // data loading is finished
+      setLoading(false);
       // set the error to te error message the backend passes
       setError(result.error);
+      // return false when the fetching does not give back a listing object
       return false;
     }
     // if response is ok
     if (response.ok) {
-        setLoading(false);
+      // data loading is finished
+      setLoading(false);
       // pass back the result
       return result;
     }

@@ -6,21 +6,26 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import "../styles/Page.css";
 
 function LendingPage() {
+  // state for the lenderBookList, set to empty
   const [lenderBookList, setLenderBookList] = useState([]);
+  // use the hook for fetching data
   const { getLenderListing, error } = useGetLenderListing();
   const { user } = useAuthContext();
 
-
+  // useEffect is used to fetch lenders book list upon lending page load
   useEffect(() => {
     const fetchData = async () => {
       // check if the user is available before making the API call
       if (user) {
         const lenderListedBooks = await getLenderListing();
+        // if the fetch succeeds
         if (lenderListedBooks !== false) {
+          // set state with the fetched data
           setLenderBookList(lenderListedBooks);
         }
       }
     };
+    // call function to fetch data
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -30,6 +35,7 @@ function LendingPage() {
     setLenderBookList([...lenderBookList, newBook]);
   };
 
+  // function used for managing edit changes in the book details
   const handleEdit = (editedBook) => {
     if (lenderBookList && lenderBookList.length > 0) {
       // map to create a new array with the modified book
@@ -41,6 +47,7 @@ function LendingPage() {
     }
   };
 
+  // function is to manage listing deletion
   const handleListingDelete = (listingId) => {
     if (lenderBookList && lenderBookList.length > 0) {
       // filter out the book that has been deleted
@@ -50,9 +57,9 @@ function LendingPage() {
       // set the updated book list to the state
       setLenderBookList(updatedBookList);
     }
-  }; 
+  };
 
-  console.log(lenderBookList);
+  // state and handler methods passed down to the children components
   return (
     <div className="page-upper-padding">
       <LenderListing

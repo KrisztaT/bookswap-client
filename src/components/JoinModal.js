@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import { useState } from "react";
 import { useJoin } from "../hooks/useJoin";
-import { useNavigate  } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import "../styles/Button.css";
 import "../styles/Logo.css";
@@ -14,27 +14,36 @@ import "../styles/PageHeader.css";
 import "../styles/FormInput.css";
 import "../styles/Modal.css";
 
-
 const JoinModal = ({ show, handleClose }) => {
+  // state variables to store form input values
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // custom hook to handle the join process
   const { join, error, loading } = useJoin();
 
+  // react router's navigate function to redirect after successful join
   const navigate = useNavigate();
 
+  // function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await join(username, firstName, email, password)
 
+    // call the join function with form input values and wait for the result
+    const result = await join(username, firstName, email, password);
+
+    // if the join was successful
     if (result) {
+      // navigate to the /borrowing route
       navigate("/borrowing");
+      // close the modal
       handleClose();
     }
   };
 
+  // join modal form
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop="static">
@@ -96,10 +105,13 @@ const JoinModal = ({ show, handleClose }) => {
                 },
               }}
             >
-              <Button type="submit" className="btn-custom m-3" disabled={loading}>
+              <Button
+                type="submit"
+                className="btn-custom m-3"
+                disabled={loading}
+              >
                 Join
               </Button>
-              
             </motion.div>
           </Form>
         </Modal.Body>

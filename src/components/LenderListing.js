@@ -20,40 +20,53 @@ import "../styles/Button.css";
 import "../styles/Page.css";
 
 const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
+  // state variables to manage the edit modal's visibility and the book to be edited
   const [showEditModal, setShowEditModal] = useState(false);
   const [editBook, setEditBook] = useState(null);
 
-  const { deleteListing, error: hookError, loading } = useDeleteListing();
+  // custom hook to handle the delete listing process
+  const { deleteListing, error: hookError } = useDeleteListing();
 
+  // function to handle the Edit button click and set the book to be edited
   const handleClickEdit = (bookId) => {
     // find the book in the books array using bookId
     const bookToEdit = books.find(
       (bookData) => bookData.book._id.toString() === bookId.toString()
     );
+    // set the state with the bookToEdit value
     setEditBook(bookToEdit);
+    // open modal for editing
     handleShowEditModal();
   };
 
+  // functions to manage the edit modal's visibility
   const handleCloseEditModal = () => setShowEditModal(false);
   const handleShowEditModal = () => setShowEditModal(true);
 
+  // function to handle the Delete button click and delete the listing
   const handleClickDelete = async (listingId) => {
+    // call deleteListing to manage the api delete request
     const result = await deleteListing(listingId);
+    // if the request was successful
     if (result) {
+      // call handleListingDelete function from the parent to delete the listing from the state
       handleListingDelete(listingId);
     }
   };
 
+  // Lender listing cards conditional rendering is necessary as the api requests are asynchronous
+  // i.e.:  {books &&  books.map((bookData) => ( ...
+  // card buttons are also conditionally rendered depending on the book creator status
   return (
     <div className="pt-1">
       <Container className="mb-4">
-        <h1 className="page-header my-2 mb-3">Listed books</h1>
+        <h1 className="page-header mt-2 mb-3">Listed books</h1>
         <div className="d-flex justify-content-center align-content-center flex-wrap">
           {error && <div className="error-message">{error}</div>}
           <Card key="info" className="card-add">
             <Row className="my-2">
               <JournalPlus
-                className="icon-hover mx-2"
+                className=""
                 size={100}
                 color="#233565"
               />
@@ -64,7 +77,8 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                 className=" d-flex flex-column align-items-start justify-content-center"
               >
                 <p className="my-2 fw-semibold">
-                To add a book to the listing, click on the 'Jump to Add Book' button below and fill out the form.
+                  To add a book to the listing, click on the 'Jump to Add Book'
+                  button below and fill out the form.
                 </p>
               </Col>
             </Row>
@@ -146,7 +160,6 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           onClick={() =>
                             handleClickDelete(bookData.listing._id)
                           }
-                          disabled={loading}
                           className="btn-custom-bkg-danger"
                         >
                           Delete listing
@@ -167,7 +180,6 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           onClick={() =>
                             handleClickDelete(bookData.listing._id)
                           }
-                          disabled={loading}
                           className="btn-custom-bkg-danger"
                         >
                           Delete listing

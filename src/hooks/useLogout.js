@@ -1,6 +1,8 @@
+// custom hook for logout
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
+  // get the dispatch function from the AuthContext
   const { dispatch } = useAuthContext();
 
   const logout = () => {
@@ -11,5 +13,5 @@ export const useLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
 
-  return {logout};
+  return { logout };
 };

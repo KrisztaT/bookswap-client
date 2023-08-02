@@ -1,52 +1,60 @@
-.card-available{
-    width: 330px;
-    padding: 8px;
-    border: solid 3px #19B4B4;
-    margin-left: 12px;
-    margin-bottom: 12px;
-    line-height: 18px;
+.card-available {
+  width: 330px;
+  padding: 8px;
+  border: solid 3px #19b4b4;
+  margin-left: 12px;
+  margin-bottom: 16px;
+  line-height: 18px;
 }
 
-.card-borrowed{
-    width: 330px;
-    padding: 8px;
-    border: solid 3px #233565;
-    margin-left: 12px;
-    margin-bottom: 12px;
-    line-height: 18px;
+.card-borrowed {
+  width: 330px;
+  padding: 8px;
+  border: solid 3px #233565;
+  margin-left: 12px;
+  margin-bottom: 16px;
+  line-height: 18px;
 }
 
-.card-add{
-    width: 330px;
-    padding: 8px;
-    border: dotted 3px #d621cd;
-    margin-left: 12px;
-    margin-bottom: 12px;
-    line-height: 18px;
+.card-add {
+  width: 330px;
+  padding: 8px;
+  border: dotted 3px #d621cd;
+  margin-left: 12px;
+  margin-bottom: 16px;
+  line-height: 18px;
 }
 
-.second-row-available{
-    padding: 8px;
-    background-color: rgba(25, 180, 180, 0.15);
-    margin-top: 8px;
+.second-row-available {
+  padding: 8px;
+  background-color: rgba(25, 180, 180, 0.15);
+  margin-top: 8px;
 }
 
-.second-row-borrowed{
-    padding: 8px;
-    background-color: rgba(35, 53, 101, 0.15);
-    margin-top: 8px;
+.second-row-borrowed {
+  padding: 8px;
+  background-color: rgba(35, 53, 101, 0.15);
+  margin-top: 8px;
 }
 
-.second-row-add{
-    padding: 8px;
-    background-color: rgba(164, 53, 151, 0.15);
-    margin-top: 8px;
+.second-row-add {
+  padding: 8px;
+  background-color: rgba(164, 53, 151, 0.15);
+  margin-top: 8px;
 }
 
-.icon-hover:hover {
-    cursor: pointer;
+p {
+  margin: 0;
+}
+
+@media (max-width: 400px) {
+  .card-available {
+    margin-left: 0px;
   }
-
-p{
-    margin: 0;
+  .card-borrowed {
+    margin-left: 0px;
+  }
+  .card-add {
+    margin-left: 0px;
+  }
 }

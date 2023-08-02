@@ -7,33 +7,42 @@ import "../styles/Button.css";
 import "../styles/PageHeader.css";
 
 const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
+  // state variable to store edited book data
   const [editedBook, setEditedBook] = useState();
+  // Custom hook to handle updating book and listing data
   const { updateBookAndListing, error, loading } = useUpdateBookAndListing();
 
+  // function to handle changes in the form input fields and add it to the previous state
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEditedBook((prevBook) => ({
       ...prevBook,
       [name]: value,
     }));
-    console.log(editedBook);
   };
 
+  // function to handle saving changes after editing
   const handleSaveChanges = async () => {
-    console.log(editedBook, bookData.book._id);
+    // call the updateBookAndListing function to handle api request
     const result = await updateBookAndListing(
       editedBook,
       bookData.book._id,
       bookData.listing._id
     );
-    console.log(result);
-    if (result){
-    handleEdit(result);
-    setEditedBook({});
-    handleClose();
-  }
+    // if the fetch is successful
+    if (result) {
+      // call the handleEdit function with the updated book data to modify state
+      handleEdit(result);
+      // reset the editedBook state
+      setEditedBook({});
+      // close the modal after successful update
+      handleClose();
+    }
   };
 
+  // edit modal is conditionally rendered depending on if the user added the book to the database or not
+  // if the user added the book to the db book details are allowed to be updated, in other case only
+  // lending information can be updated
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop="static">
@@ -222,7 +231,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer className="bg-light d-flex flex-column align-content-center justify-content-center">
-        {error && <div className="error-message">{error}</div>}
+          {error && <div className="error-message">{error}</div>}
           <Button
             className="btn-custom-bkg"
             onClick={handleSaveChanges}
@@ -230,7 +239,6 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
           >
             Save Changes
           </Button>
-          
         </Modal.Footer>
       </Modal>
     </>

@@ -22,23 +22,31 @@ const NavBar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
 
-  // setting Login modal state
+  // setting login modal open and close states
   const handleShowLoginModal = () => setShowLoginModal(true);
   const handleCloseLoginModal = () => setShowLoginModal(false);
 
-  // setting Join modal state
+  // setting loin modal open and close states
   const handleCloseJoinModal = () => setShowJoinModal(false);
   const handleShowJoinModal = () => setShowJoinModal(true);
 
+  // logout hook destruction
   const { logout } = useLogout();
+   // use auth context and deconstruct user object (user who logged in)
   const { user } = useAuthContext();
+  // react router's navigate function to redirect after successful logout
   const navigate = useNavigate();
 
+  // handle logout
   function handleLogout() {
     logout();
+    // after logout the app redirects the user to the home page
     navigate("/");
   }
 
+  // NavBar rendering
+  // NavBar is conditionally rendered depending if user is logged (joined) in or not
+  // until user is not logged our joined they can not see the navigation links (home, borrowing, lending)
   return (
     <div>
       <Navbar

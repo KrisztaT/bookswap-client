@@ -4,10 +4,12 @@ import NavBar from "../components/NavBar";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { MemoryRouter } from "react-router-dom";
 
-// mock the useAuthContext hook
+// mock the useAuthContext hook for unit test
 jest.mock("../hooks/useAuthContext", () => ({
   useAuthContext: jest.fn(),
 }));
+
+// unit test for NavBar
 describe("Unit test for NavBar render with Login and Join Button", () => {
   // unit test for NavBar render with Login and Join Button
   test("Navigation bar contains Login and Join buttons", () => {
@@ -18,6 +20,7 @@ describe("Unit test for NavBar render with Login and Join Button", () => {
       join: jest.fn(),
     });
 
+    // render NavBar with default renderer
     render(
       // mock Router used for wrapping the NavBar
       <MemoryRouter>

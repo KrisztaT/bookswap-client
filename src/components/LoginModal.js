@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
-import { useNavigate  } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import "../styles/Button.css";
 import "../styles/Logo.css";
@@ -15,27 +15,40 @@ import "../styles/Modal.css";
 import "../styles/Error.css";
 
 const LoginModal = ({ show, handleClose }) => {
+  // state variables to store form input values
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // custom hook to handle the login process
   const { login, error, loading } = useLogin();
 
+  // react router's navigate function to redirect after successful join
   const navigate = useNavigate();
 
+  // function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // call the login function with form input values and wait for the result
     const result = await login(username, password);
 
+    // if the join was successful
     if (result) {
+      // navigate to the /borrowing route
       navigate("/borrowing");
+      // close the modal
       handleClose();
     }
-    
   };
 
+  // login modal form
   return (
     <>
-      <Modal show={show} onHide={handleClose} backdrop="static" data-testid="login-modal">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        data-testid="login-modal"
+      >
         <Modal.Header
           closeButton
           className="bg-light d-flex flex-column align-items-center justify-content-center"

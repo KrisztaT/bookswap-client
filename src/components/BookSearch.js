@@ -16,10 +16,12 @@ import "../styles/FormContainer.css";
 import "../styles/Page.css";
 
 const SearchBook = ({ addResultBooks }) => {
+  // state variables to store form input values and errors
   const [searchTitle, setSearchTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [location, setLocation] = useState("");
   const [condition, setCondition] = useState("");
+  // custom hook to handle search book listings
   const {
     searchBookListings,
     error: hookError,
@@ -27,6 +29,7 @@ const SearchBook = ({ addResultBooks }) => {
   } = useSearchBookListings();
   const [error, setError] = useState("");
 
+  // function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     // validate if searchTitle is defined
@@ -34,14 +37,17 @@ const SearchBook = ({ addResultBooks }) => {
       setError("Title field is mandatory.");
       return;
     }
-    // call the hook to handle book search by title
+    // call the hook to handle book search by criteria provided
     const searchBookLists = await searchBookListings(
       searchTitle,
       author,
       location,
       condition
     );
+    // update the search result state in the parent component
     addResultBooks(searchBookLists);
+
+    // reset form input values and errors after successful search
     setSearchTitle("");
     setAuthor("");
     setLocation("");
@@ -49,7 +55,9 @@ const SearchBook = ({ addResultBooks }) => {
     setError("");
   };
 
+  // form for the search
   return (
+    <div className="d-flex flex-column align-items-center justify-content-center mx-2">  
     <Container className="form-container d-flex flex-column align-items-center justify-content-center pt-1">
       <h1 className="page-header text-center my-3">Book search</h1>
       <Form onSubmit={handleSubmit}>
@@ -114,6 +122,7 @@ const SearchBook = ({ addResultBooks }) => {
             },
           }}
         >
+            {/* ... conditional rendering of errors ... */}
           {hookError && <div className="error-message">{hookError}</div>}
           {error && <div className="error-message">{error}</div>}
           <Button
@@ -126,6 +135,7 @@ const SearchBook = ({ addResultBooks }) => {
         </motion.div>
       </Form>
     </Container>
+    </div>
   );
 };
 
