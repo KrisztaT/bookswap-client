@@ -141,7 +141,7 @@ const AddBook = ({ addBookToLenderList }) => {
                 value={condition}
               >
                 <option value="" disabled>
-                  Select Condition
+                  Select Condition (required)
                 </option>
                 <option value="new">new</option>
                 <option value="good">good</option>
