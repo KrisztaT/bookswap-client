@@ -58,6 +58,7 @@ const AddBook = ({ addBookToLenderList }) => {
 
   // Form layout for adding book listing
   return (
+    <div className="d-flex flex-column align-items-center justify-content-center mx-2">  
     <Container
       className="form-container d-flex flex-column align-items-center justify-content-center mt-3 mb-5"
       id="add-book"
@@ -173,6 +174,7 @@ const AddBook = ({ addBookToLenderList }) => {
         </motion.div>
       </Form>
     </Container>
+    </div>
   );
 };
 

@@ -57,6 +57,7 @@ const SearchBook = ({ addResultBooks }) => {
 
   // form for the search
   return (
+    <div className="d-flex flex-column align-items-center justify-content-center mx-2">  
     <Container className="form-container d-flex flex-column align-items-center justify-content-center pt-1">
       <h1 className="page-header text-center my-3">Book search</h1>
       <Form onSubmit={handleSubmit}>
@@ -134,6 +135,7 @@ const SearchBook = ({ addResultBooks }) => {
         </motion.div>
       </Form>
     </Container>
+    </div>
   );
 };
 
