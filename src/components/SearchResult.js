@@ -7,6 +7,11 @@ import "../styles/PageHeader.css";
 import "../styles/Card.css";
 import "../styles/Button.css";
 
+import {
+  classNameSelector,
+  classNameSelectorRow,
+} from "../utils/classNameSelector";
+
 const SearchResult = ({ resultBooks }) => {
   // search result cards rendered conditionally depending if the api got back the book results
   return (
@@ -15,7 +20,7 @@ const SearchResult = ({ resultBooks }) => {
       <div className="d-flex justify-content-center align-content-center flex-wrap">
         {resultBooks.listings &&
           resultBooks.listings.map((listingData, index) => (
-            <Card key={`${index}`} className="card-available m-2 mb-5">
+            <Card key={`${index}`} className={classNameSelector(listingData.availability)}>
               <Row>
                 <Col xs={4}>
                   <img
@@ -37,7 +42,9 @@ const SearchResult = ({ resultBooks }) => {
                   <p>{resultBooks.book.releaseYear}</p>
                 </Col>
               </Row>
-              <Row className="second-row-available">
+              <Row  className={classNameSelectorRow(
+                    listingData.availability
+                  )}>
                 <Col
                   xs={12}
                   className="mt-1 mb-1 d-flex flex-column align-items-start justify-content-center"
