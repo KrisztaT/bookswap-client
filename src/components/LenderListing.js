@@ -66,7 +66,7 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
           <Card key="info" className="card-add">
             <Row className="my-2">
               <JournalPlus
-                className="icon-hover mx-2"
+                className="mx-2"
                 size={100}
                 color="#233565"
               />
