@@ -25,7 +25,7 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
   const [editBook, setEditBook] = useState(null);
 
   // custom hook to handle the delete listing process
-  const { deleteListing, error: hookError, loading } = useDeleteListing();
+  const { deleteListing, error: hookError } = useDeleteListing();
 
   // function to handle the Edit button click and set the book to be edited
   const handleClickEdit = (bookId) => {
@@ -160,7 +160,6 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           onClick={() =>
                             handleClickDelete(bookData.listing._id)
                           }
-                          disabled={loading}
                           className="btn-custom-bkg-danger"
                         >
                           Delete listing
@@ -181,7 +180,6 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                           onClick={() =>
                             handleClickDelete(bookData.listing._id)
                           }
-                          disabled={loading}
                           className="btn-custom-bkg-danger"
                         >
                           Delete listing
