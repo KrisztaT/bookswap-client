@@ -103,8 +103,8 @@ const LenderListing = ({ books, handleEdit, handleListingDelete, error }) => {
                 <Row>
                   <Col xs={4}>
                     <img
-                      src={bookData.book.imgUrl}
-                      alt={"No Image Provided for: " + bookData.book.title}
+                      src={bookData.book.imgUrl ? bookData.book.imgUrl : "./no_img.png"}
+                      alt={bookData.book.title}
                       style={{
                         width: "80px",
                         height: "120px",
