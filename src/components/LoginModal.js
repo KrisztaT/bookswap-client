@@ -70,7 +70,7 @@ const LoginModal = ({ show, handleClose }) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Control
-                type="text"
+                type="password"
                 placeholder="Password"
                 className="form-input"
                 onChange={(e) => setPassword(e.target.value)}

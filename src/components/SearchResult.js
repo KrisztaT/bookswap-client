@@ -24,7 +24,7 @@ const SearchResult = ({ resultBooks }) => {
               <Row>
                 <Col xs={4}>
                   <img
-                    src={resultBooks.book.imgUrl}
+                    src={resultBooks.book.imgUrl ? resultBooks.book.imgUrl : "./no_img.png"}
                     alt={resultBooks.book.title}
                     style={{
                       width: "80px",
@@ -38,7 +38,7 @@ const SearchResult = ({ resultBooks }) => {
                     <b>{resultBooks.book.title}</b>
                   </p>
                   <p>{resultBooks.book.author}</p>
-                  <p>{resultBooks.book.page} pages</p>
+                  <p>{resultBooks.book.page ? resultBooks.book.page + " pages" : ""} </p>
                   <p>{resultBooks.book.releaseYear}</p>
                 </Col>
               </Row>
