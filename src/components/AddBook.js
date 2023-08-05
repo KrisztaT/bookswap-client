@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Spinner from 'react-bootstrap/Spinner';
 
 import { motion } from "framer-motion";
 
@@ -169,7 +170,7 @@ const AddBook = ({ addBookToLenderList }) => {
             className="btn-custom mt-3 mb-5"
             disabled={loading}
           >
-            Add
+             {loading ?  <Spinner animation="border" variant="light" /> : "Add"}
           </Button>
         </motion.div>
       </Form>
