@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Spinner from 'react-bootstrap/Spinner'
 
 import { motion } from "framer-motion";
 
@@ -130,7 +131,7 @@ const SearchBook = ({ addResultBooks }) => {
             className="btn-custom mt-3 mb-3"
             disabled={loading}
           >
-            Search
+             {loading ?  <Spinner animation="border" variant="light" /> : "Search"}
           </Button>
         </motion.div>
       </Form>

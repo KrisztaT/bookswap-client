@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
+import Spinner from 'react-bootstrap/Spinner'
 
 import { useUpdateBookAndListing } from "../hooks/useUpdateBookAndListing";
 
@@ -237,7 +238,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
             onClick={handleSaveChanges}
             disabled={loading}
           >
-            Save Changes
+             {loading ?  <Spinner animation="border" variant="light" /> : "Save Changes"}
           </Button>
         </Modal.Footer>
       </Modal>

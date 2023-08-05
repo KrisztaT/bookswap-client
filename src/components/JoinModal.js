@@ -1,6 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Spinner from 'react-bootstrap/Spinner';
 
 import { motion } from "framer-motion";
 
@@ -110,7 +111,7 @@ const JoinModal = ({ show, handleClose }) => {
                 className="btn-custom m-3"
                 disabled={loading}
               >
-                Join
+                 {loading ?  <Spinner animation="border" variant="light" /> : "Join"}
               </Button>
             </motion.div>
           </Form>

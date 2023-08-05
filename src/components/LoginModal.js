@@ -1,6 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Spinner from 'react-bootstrap/Spinner';
 import { motion } from "framer-motion";
 
 import { useState } from "react";
@@ -95,7 +96,7 @@ const LoginModal = ({ show, handleClose }) => {
                 disabled={loading}
                 data-testid="login-button"
               >
-                Login
+                {loading ?  <Spinner animation="border" variant="light" /> : "Login"}
               </Button>
             </motion.div>
           </Form>
