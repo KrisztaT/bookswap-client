@@ -12,9 +12,9 @@ const Footer = () => {
           &copy; {new Date().getFullYear()} BookSwap
         </div>
         <div className="social-icons">
-          <Facebook className="icon" />
-          <Twitter className="icon" />
-          <Instagram className="icon" />
+          <Facebook className="icon" onClick={() => window.location.href = "https://www.facebook.com/"} />
+          <Twitter className="icon" onClick={() => window.location.href = "https://www.twitter.com/"}/>
+          <Instagram className="icon" onClick={() => window.location.href = "https://www.instagram.com/"} />
         </div>
       </Container>
     </footer>
