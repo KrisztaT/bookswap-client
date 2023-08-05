@@ -238,7 +238,7 @@ const EditModal = ({ show, handleClose, bookData, handleEdit }) => {
             onClick={handleSaveChanges}
             disabled={loading}
           >
-             {loading ?  <Spinner animation="border" variant="light" /> : "Save Changes"}
+             {loading ?  <Spinner animation="border" variant="light" size="sm"/> : "Save Changes"}
           </Button>
         </Modal.Footer>
       </Modal>

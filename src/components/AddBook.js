@@ -170,7 +170,7 @@ const AddBook = ({ addBookToLenderList }) => {
             className="btn-custom mt-3 mb-5"
             disabled={loading}
           >
-             {loading ?  <Spinner animation="border" variant="light" /> : "Add"}
+             {loading ?  <Spinner animation="border" variant="light" size="sm"/> : "Add"}
           </Button>
         </motion.div>
       </Form>

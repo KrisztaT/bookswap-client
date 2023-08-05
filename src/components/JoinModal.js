@@ -111,7 +111,7 @@ const JoinModal = ({ show, handleClose }) => {
                 className="btn-custom m-3"
                 disabled={loading}
               >
-                 {loading ?  <Spinner animation="border" variant="light" /> : "Join"}
+                 {loading ?  <Spinner animation="border" variant="light" size="sm"/> : "Join"}
               </Button>
             </motion.div>
           </Form>
