@@ -96,7 +96,7 @@ const LoginModal = ({ show, handleClose }) => {
                 disabled={loading}
                 data-testid="login-button"
               >
-                {loading ?  <Spinner animation="border" variant="light" /> : "Login"}
+                {loading ?  <Spinner animation="border" variant="light"  size="sm"/> : "Login"}
               </Button>
             </motion.div>
           </Form>

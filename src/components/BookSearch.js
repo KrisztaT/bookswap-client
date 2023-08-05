@@ -131,7 +131,7 @@ const SearchBook = ({ addResultBooks }) => {
             className="btn-custom mt-3 mb-3"
             disabled={loading}
           >
-             {loading ?  <Spinner animation="border" variant="light" /> : "Search"}
+             {loading ?  <Spinner animation="border" variant="light" size="sm"/> : "Search"}
           </Button>
         </motion.div>
       </Form>
